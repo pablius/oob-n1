@@ -1,0 +1,59 @@
+# talkmee
+
+<VirtualHost *>
+
+    DocumentRoot C:\data\nutus\desarrollo\clientes\talkmee
+    ServerName talkmee.nutus.info
+    CustomLog logs/talkmee.log common
+
+    Options FollowSymLinks ExecCGI
+    
+    RewriteEngine On
+    RewriteRule ^/images(.*)$ /images/$1 [L]
+    RewriteRule ^/scripts(.*)$ /scripts/$1 [L]
+    RewriteRule !\.(gif|css|jpg|png|jar|swf|js|swf|JPG|GIF|PNG|SWF|CSS|JS)$ /index.php
+
+
+</VirtualHost>
+
+<VirtualHost *>
+
+    DocumentRoot C:\data\nutus\desarrollo\clientes\talkmee
+    ServerName admin.talkmee.nutus.info
+
+	DirectoryIndex admin.php
+
+    CustomLog logs/talkmee_admin.log common
+
+    Options FollowSymLinks ExecCGI
+    
+    RewriteEngine On
+    RewriteRule ^/images(.*)$ /images/$1 [L]
+    RewriteRule ^/scripts(.*)$ /scripts/$1 [L]
+   
+    RewriteRule !\.(gif|css|jpg|png|jar|swf|js|swf|JPG|GIF|PNG|SWF|CSS|JS)$ /admin.php
+
+
+</VirtualHost>
+
+<VirtualHost *>
+
+    DocumentRoot C:\data\nutus\desarrollo\clientes\talkmee
+    ServerName cron.talkmee.nutus.info
+
+	DirectoryIndex cronjob.php
+
+    CustomLog logs/talkmee_cron.log common
+
+    Options FollowSymLinks ExecCGI
+    
+    RewriteEngine On
+    RewriteRule ^/images(.*)$ /images/$1 [L]
+    RewriteRule ^/scripts(.*)$ /scripts/$1 [L]
+   
+    RewriteRule !\.(gif|css|jpg|png|jar|swf|js|swf|JPG|GIF|PNG|SWF|CSS|JS)$ /cronjob.php
+
+
+</VirtualHost>
+
+#end talkmee

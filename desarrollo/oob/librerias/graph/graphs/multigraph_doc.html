@@ -1,0 +1,631 @@
+<html>
+<title>Multigraph Class documentation</title>
+<style>
+<!-- style for documentation <<< -->
+html {
+	background-color: #aaaaaa;
+}
+body {
+	color: #000000;
+	background-color: #aaaaaa;
+	font-family: verdana, helvetica, arial;
+	font-size: 10px;
+}
+h3 {
+	text-align: center;
+}
+div.shead {
+	color: #000000;
+	border: 1px solid #555555;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 5px;
+}
+div.section {
+	color: #000000;
+	background-color: #9999aa;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+div.codeblock {
+	color: #000000;
+	background-color: #bbbbbb;
+	padding: 5px;
+	border: 1px solid black;
+	margin: 25px;
+	padding: 10px;
+}
+th {
+	background-color: #888888;
+	color: #000000;
+}
+td {
+	font-family: verdana, helvetica, arial;
+	vertical-align: top;
+	font-size: 10px;
+	border: 1px solid #bbbbbb;
+}
+p {
+	text-align: justify;
+}
+</style>
+<!-- >>> -->
+</head>
+<body>
+<h3>Multigraph Class documentation</h3>
+<div class="shead">What is this?</div>
+<!--  <<< -->
+<div class="section"><p>
+Multigraph provides a way to generate dot, line, bar and pie graphs with one
+class. Multigraph produces a graph based on parameters given on the url and
+outputs it directly as a png graphic. Multigraph also provides a mechanism for
+generating the correct url string with an easy interface to the class, 
+eliminating the need for you to come up with a reliable url generator for
+the class.</p>
+<p>Being a class, Multigraph can be extended. An example is eqn_multigraph,
+which overrides some of the member functions of multigraph to provide a way
+to graph a function of x, for instance, &quot;y = x^2&quot;. Eqn_multigraph
+is provided more as a demonstration than anything else -- I'm aware that it's
+not perfect.</p>
+</div>
+<!-- >>> -->
+<div class="shead">but why?</div>
+<!-- <<< -->
+<div class="section"><p>
+I wanted a mechanism for generating graphs, primarily bar and pie graphs, but 
+also line graphs. The dot graph is merely a step of construction -- getting
+that right first provided the basis for easy implementation of the other
+graph types. Check out how short the actual line and bar graph drawing routines
+are. It's all because of the hard work done <i>before</i> they are called
+upon -- hard work that was put firmly in place for the dot graph, with
+extension in mind.</p>
+<p>I got a lot of inspiration from Powergraphic by Carlos Reche. The class is
+held on phpclasses.org. There are a lot of things I think he got right, like
+the ability to create different graph types with one interface, and the
+clarity and accuracy of his graphs.
+Whilst being a very good example of graphic work, the
+class fell short in a few areas that I tried to address, initially by
+hacking on his class, and then by just having a go from a fresh start,
+because sometimes that's just the best way to go. I even sometimes take that
+approach with my own code.</p>
+<p>Functionality I wanted to add in included:
+<ol>
+<li>I wanted the graphic to be produced in an area size determined by the
+calling script, and to have all of the internals accordingly adjusted --
+providing for a &quot;scalable&quot; graph. I can't see how this is easily 
+achieved with Powergraphic, although I can see that the Powergraphic graph
+will expand when more data is thrown at it.</li>
+<li>True-type font usage. Whilst the 5 inbuilt fonts in GD work well, they 
+aren't as pretty as true-type fonting, and the true-type fonts are 
+anti-aliased, making them clearer to read, especially when smaller sizes are
+used. Also, the builtin fonts can't be used to create a nice large title.
+</li>
+<li>Unbounded series usage. Powergraphic only allows up to two series on a
+graph that supports multiple series (line, bar, dot) -- I wanted to be able to
+compare data from more than two datasets, and I couldn't acheive that with 
+Powergraphic. This was the main reason I started working on Multigraph -- 
+trying to hack that functionality into Powergraphic when I didn't understand
+the underlying code was going to be a mission, and most likely was just going
+to turn out to be a mess. I had to go through the full journey myself, and
+construct things the right way for my purpose from the ground up.</li>
+<li>
+A minor point: dropshadows. They just look nice. But you can disable them if
+you think that looking nice is less important than the miniscule processing
+wasted on rendering them.
+</li>
+</ol>
+</p>
+</div>
+<!-- >>> -->
+<div class="shead">About style and other such things</div>
+<!-- <<< -->
+<div class="section"><p>
+	I tend to do just about all of my coding in VIM. Actually, I stick to using
+	the graphical version (GVIM), but sometimes make short trips to the land
+	of the console. My reasons are simple: I need a uniform development 
+	environment on win32 and linux (because I'm forced to use the first, and
+	I love to use the second), and I needed something powerful, yet simple
+	and, quite importantly, free. Not just free as in beer -- free as in
+	licensing. I believe that the days of closed-source applications are
+	over. Commercial apps can still be written: a coder has to eat and feed
+	his wife and all that. But your clients deserve disclosure on the source, 
+	should you be abducted by aliens or something similar. Or even just so they
+	can also hire a hacker to implement features you didn't think of. But
+	enough of that.</p>
+	<p>Also, whilst VIM may give an initially steep learning curve, and
+	seem to contain unnecessary keyboard work, you will find that other
+	editors become annoying after you find the true power in vim. Also, very
+	few other editors are as ready to adapt to the coder's wishes.</p>
+	<p>The point is that you might notice a few commented out &lt;&lt;&lt;'s
+	and corresponding &gt;&gt;&gt;'s. This is not an angle-bracket fetish: it's
+	my choice for fold markers in vim (thanks to a friend) because curly braces
+	cause problems in Tcl (even when commented), and tend to mess up the
+	brace-matching for languages that use braces for code blocks, since
+	vim cannot always tell what is a code brace, and what is a fold brace.
+	You also might notice that I tend to stick to an 80 column line. This can
+	make some sections of deep code a little short on space, but it's something
+	I do as a matter of style (thanks to the same friend). It makes for
+	easier reading on a terminal, and means that the code is more easily
+	available to anyone who has time to waste on it.</p>
+</div>
+<!-- >>> -->
+<div class="shead">Where to begin?</div>
+<!--- <<< -->
+<div class="section"><p>
+Well, first off, you obviously have to have a need for graphing capabilities
+in a web application or the like. Then you need to decide what type of graph
+will best represent your data. Bar and line graphs are good for long datasets
+for one or more series. Pie graphs are good for the case where you just have
+one &quot;series&quot; or &quot;scenario&quot; and you have components that
+make up a whole; for instance, if you have a sales team, and you know what
+the value of each person's sales is, and you want to represent that in a
+manner that will show at a glance who had the greatest contribution. 
+Dot graphs are generally not super-useful -- like I said above, it was
+more of a stepping-stone along the path, but you may like it, for
+relatively small datasets.</p>
+<p>Note
+that the pie graph is limited to one series of data (with the implication
+that every data point is treated like a series, with it's own coloring
+and labelling): it just doesn't make sense to
+try and do multiple layers or something similar with the pie graph. On the 
+other hand, the bar, line and dot graphs can have as many series as you want.
+Series coloring is fixed with a color table for the first nine series, with
+random coloring coming in after that. This means that for graphs of less
+than nine series, you will get predictable coloring, providing familiarity.
+If you require more fixed coloring, or you just don't like the series colors
+that I have picked from some random, not-so-icky colors, you can also
+specify the colors to be used. See the usage below.
+</p>
+<p>Whilst a graph with more than 9 series on it may be a little cluttered
+to read, I wanted to leave that decision up to the requesting script's writer,
+not to the library. Library code should do what it does well, and leave 
+the nuances of clarity to the author requesting output from that library.
+</p>
+</div>
+<!-- >>> -->
+<div class="shead">Usage</div>
+<!-- <<< -->
+<div class="section">
+<p>
+	Usage of the Multigraph class really only consists of a few steps.
+	<ol><li>Instantiate the class, with the options that you want the graph
+		to have, such as titles and the graph type. You can also specify
+		an array of colors to use for the series that you want to have
+		plotted:
+		<div class="codeblock">
+			$obj = new Multigraph(array(<br>
+			"title" =&gt; "My graph",<br>
+			"type" =&gt; "bar",<br>
+			...<br>
+			));
+		</div></li>
+		<li>Give the Multigraph object some data. Use the add_series
+		member function to do this:
+		<div class="codeblock">
+		$obj-&gt;add_series($data_array, $series_name);
+		</div>
+		Note that the data array is an array where array keys are the
+		X value and the corresponding array elements are the Y value
+		for the X value specified as the key. The array:
+		<div class="codeblock">
+			$data = array(<br>
+			"1" =&gt; "2",<br>
+			"3" =&gt; "4",<br>
+			);
+		</div>
+		would draw the points with (x,y) co-ordinates (1,2) and (3,4). X
+		and Y values can be either numeric or arbitrary values, but if
+		arbitrary values (eg "Jan", "Feb", "Mar") are to be used on a 
+		graph that is not a pie graph, you must specify the labels to
+		be used on the non-numeric axes, especially so that Multigraph
+		can figure out where to put things. If using the class interface,
+		you can specify, for example:
+		<div class="codeblock">
+			$obj-&gt;xlabels = array(<br>
+			"Jan", "Feb", "Mar",<br>
+			);
+		</div>
+		On the url, a comma-delimited list can be used for the arguments
+		&quot;xl&quot; (xlabels) and &quot;yl&quot; (ylabels)
+		</li>
+		<br>
+		<li>Either ask the object to render (if you plan on delivering
+		the graphical content directly in the stream):
+		<div class="codeblock">
+		$obj-&gt;render();
+		</div>
+		or, more commonly, use the createurl member function to create
+		the required source attribute for an img tag:
+		<div class="codeblock">
+		print("&lt;img src=\&quot;".$obj-&gt;createurl()."\&quot;&gt;");
+		</div>
+		</li>
+	</ol>
+</p>
+<p>
+	The constructor interface to the multigraph class is achieved through
+	an array of arguments. Simply because it allows you to specify whatever 
+	arguments you want to specify, in whatever order you want. Kind of like
+	the way Python works. This means that you will see the following
+	kind of object instantiation:
+	<div class="codeblock"><code>
+	$obj = new Multigraph(array(<br>
+		"index1"		=&gt;	"value1", <br>
+		"index2"		=&gt;	"value2",<br>
+	));
+	</code>
+	</div><p>
+	When I refer to arguments by name, you will be specifying them like this.
+	You can, of course, define the array before doing the instantiation, 
+	and just
+	give the array as the only argument  -- I just think that the code is 
+	clearer the first way.</p>
+	<p>This also means that the _GET array can be treated as an instantiation
+	array for the class -- and in fact, this is what happens when you use
+	multigraph to actually output a graph. The only minor exception comes
+	with the specification of series colors, which are passed as an array
+	in the options array for the class, indexed with "scolors". Of course,
+	you can't just put a php array on the url without some kind of
+	translation to string -- and I chose something simple for anyone
+	who wants to create the url themselves: sc&lt;<i>i</i>&gt; specifies
+	the color (hex notation, like #123456) to use for series <i>i</i>.
+	You can check out the sections on series specification and url input / 
+	output to see more about series numbering and related information.</p>
+	<p>
+	Some settings may be percentages -- in these cases, you may specify
+	the value either as a fraction from 0 to 1 (eg 0.65) or as a number
+	between 1 and 100 -- percentages less than 100 have to be specified
+	as fractions (but you should never need them). Percentages have been
+	used to help make the class able to output images scaled to the size
+	that you would find most useful. Graphs with a lot of datapoints may
+	be a lot clearer if they are larger.
+	</p>
+	<p>Possible setting values are:
+	<table align="center">
+		<tr><th>Setting</th><th>Influence</th><th>Default</th></tr>
+		<tr>
+			<td>title</td>
+			<td>The title of the graph to be created.
+			</td>
+			<td>The default is an empty string. If the title is an empty
+				string, space is not allocated for it.</td>
+		</tr><tr>
+			<td>x_title</td>
+			<td>The title to be placed at the x-axis. Will be placed at the 
+				bottom of the graph area, not necessarily on the x-axis line.
+				I found this to look a little clearer, as well as not wasting
+				width space by placing right or left of the x-axis line.
+			</td>
+			<td>Empty string. If the x title is an empty string, space is not
+			allocated for it.</td>
+		</tr>
+		<tr>
+			<td>y_title</td>
+			<td>The title to be placed at the y-axis. Will be placed to the
+			left of the graph, not necessarily on the y-axis line, for
+			the same reasoning as the x_title. The y_title can be orientated
+			vertically (the default), or horizontally, by specifying the
+			y_title_orient value (&quot;v&quot; for vertical, &quot;h&quot;
+			for horizontal).</td>
+			<td>v</td>
+		</tr>
+		<tr>
+			<td>y_title_orient</td>
+			<td>Sets the orientation of the y_title text -- vertical 
+			(&quot;v&quot;) or horizontal (&quot;h&quot;).</td>
+			<td>v</td>
+		</tr>
+		<tr>
+			<td>style</td>
+			<td>Selects a color style or theme to generate the graph with.
+			Multigraph comes with 5 styles, some of which are inspired
+			by Powergraphic. The available styles are: office, spring,
+			matrix, translite and transdark. The last two are designed 
+			for the case where you would like to have the graph background
+			be transparent, so that the base color or graphic of your
+			page may come through. Translite is best used on a light
+			background, and transdark on a dark background. The office
+			theme looks a little like something you might see from an 
+			office suite output; the spring theme is in fresh colors; the
+			matrix theme is all dark and green tones, and the translite and
+			transdark themes take their base coloring from the office theme,
+			modified to suit the intended background.</td>
+			<td>office</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Type of graph to be rendered. Possible types are bar (draws
+			vertical bars), hbar (draws horizontal bars) (note that there
+			is no flipping of your data: hbar may produce an output that is
+			not what you expect. Check out the test_multigraph.php hbar
+			example: this has the same dataset as the bar example, but
+			doesn't seem anywhere near as clear. Hbar is included more
+			for completeness than for satisfactoin of my own requirement),
+			dot (just draws dots for the points), line (draws lines, and
+			optionally marks the data points with dots), and pie (which 
+			has the restriction of only having one dataset, because of
+			the nature of the pie graph).
+			</td>
+			<td>bar</td>
+		</tr>
+		<tr>
+			<td>width</td>
+			<td>Width of output graphic, in pixels.</td>
+			<td>600 -- works quite well.</td>
+		</tr>
+		<tr>
+			<td>height</td>
+			<td>Height of output graphic, in pixels.</td>
+			<td>400</td>
+		</tr>
+		<tr>
+			<td>title_hperc</td>
+			<td>Percentage of the height of the output graphic to use
+			for rendering the graph title.</td>
+			<td>0.1</td>
+		</td>
+		<tr>
+			<td>graph_hperc</td>
+			<td>Height percentage of the graphical output to use for the
+			actual graphing area.
+			</td>
+			<td>whatever space is left after the title_hperc is taken
+			into account (which makes the default value 0.9)</td>
+		</tr>
+		<tr>
+			<td>graph_wperc</td>
+			<td>Width percentage of the graphical output to used for
+			the actual graphing area. If the graph has a legend, then
+			this is actually width percentage of the space left
+			<b>after</b> the legend is in place. Basically, this just
+			gives spacing for aesthetic value.</td>
+			<td>0.9</td>
+		</tr>
+		<tr>
+			<td>title_wperc</td>
+			<td>Width percentage of the graphing area that can be used
+			for the graph title. The graph title will be fitted with the
+			largest font (up to 18 px) that can fit in the granted
+			width and height. The title is always centered.</td>
+			<td>0.8</td>
+		</tr>
+		<tr>
+			<td>fontpath</td>
+			<td>The path in which to find the ttf font files. Multigraph
+			expects that fonts will just be named (eg &quot;helvetica&quot;),
+			and the corresponding .ttf file will be found in the fontpath.
+			The ttf file should always have the same name as the name of
+			font that you allocate to an item. You should find tahoma and
+			arial included (Microsoft releases these for free, and you can
+			get them just about anywhere). I use tahoma because it's pleasant,
+			and a nice-to-read font for titles, where arial is good for
+			places where space is at a premium (eg on data point titles)</td>
+			<td>defaults to current dir of executing script</td>
+		</tr>
+		<tr>
+			<td>font_title</td>
+			<td>The name of the font to be used for the title. Fonts
+			just have to be named,</td>
+			<td>tahoma</td>
+		</tr>
+		<tr>
+			<td>font_axis</td>
+			<td>The name of the font to use for labelling the axes.</td>
+			<td>arial</td>
+		</tr>
+		<tr>
+			<td>font_label</td>
+			<td>Font that is used for data point labels.<td>
+			<td>arial</td>
+		</tr>
+		<tr>
+			<td>font_label_size</td>
+			<td>Size of font to use for data point labels, in px.</td>
+			<td>7</td>
+		</tr>
+		<tr>
+			<td>font_axis_size</td>
+			<td>Size of font to use for axis labels, in px</td>
+			<td>8</td>
+		</tr>
+		<tr>
+			<td>font_legend</td>
+			<td>Font to use for the legend. The size is determined as
+			the largest font that will fit the legend into the space
+			that is allocated to it, for the dataset labels that are
+			required, up to the size specified by legend_max_font_size</td>
+			<td>arial</td>
+		</tr>
+		<tr>
+			<td>legend_wperc</td>
+			<td>Width of the graphical output that can be used to render
+			a legend for the graph (if one is required (if there are more
+			than one series) or one is requested (with force_legend))</td>
+			<td>0.2</td>
+		</tr>
+		<tr>
+			<td>force_legend</td>
+			<td>Force the legend to be drawn, even if there is only one
+			series to output. Boolean, values can be 1 or 0,</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>padding</td>
+			<td>Value, in px, to be used as a generic padding value.
+			Note that this is not always the actual padding value to be
+			used for every scenario -- it is a base value that is sometimes
+			multiplied by another value to get more padding. But it does
+			give the caller some kind of control over padding.</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>scolors</td>
+			<td>An array of hex-notation colors (#RRGGBB) to be used for
+			the series drawing. This parameter, being an array, cannot be
+			specified on the url like the other parameters -- instead, you
+			have to use sc&gt;<i>i</i>&gt; to specify each color by index</td>
+			<td>Series colors are allocated per style</td>
+		</tr>
+		<tr>
+			<td>swatch_size</td>
+			<td>Swatches are the small squares of color used in the legend.
+			You can tweak the size of these squares here. The size is in px.
+			</td>
+			<td>11</td>
+		</tr>
+		<tr>
+			<td>legend_max_font_size</td>
+			<td>Maximum size, in px, of the font to be used on the legend.</td>
+			<td>defaults to the size of the swatches</td>
+		</tr>
+		<tr>
+			<td>dropshadows</td>
+			<td>Determines whether or not dropshadows for fonts and items
+			are drawn. I only included this for someone who really didn't
+			like the dropshadows, or for the case where someone really
+			thinks that the time taken to render the dropshadows is a
+			waste. Setting this to 0 prevents all dropshadow renders.</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>shadow_y_offset</td>
+			<td>Y offset of dropshadows. Note that labels with small fonts
+			will reduce	this value for their fonts, since the shadow will
+			look better closer to the smaller font.</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>shadow_x_offset</td>
+			<td>X offset of dropshadows. Like the Y offset, this value
+			can be reduced automatically for small-fonted labels.</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>shadow_color</td>
+			<td>Actual color to use for the shadows. The color is also
+			alpha-blended with the underlying graphic. I found that the
+			default works well for situations with light and dark backgrounds
+			</td>
+			<td>#555555</td>
+		</tr>
+		<tr>
+			<td>shadow_trans</td>
+			<td>Alphablending value to assign to the shadow. 0 means total
+			opacity, and 127 (the max) means total transparency.</td>
+			<td>60</td>
+		</tr>
+		<tr>
+			<td>label_xval</td>
+			<td>Boolean to determin whether or not the x value is labelled
+			against a datapoint. Defaults vary per graph type. When only the
+			x or y value is to be labelled, just the value at that point
+			is written there; when both values are to be labelled, a label
+			like (x,y) is rendered.</td>
+			<td><table border="0">
+				<tr><th>graph type</th><th>label_xval default</th></tr>
+				<tr><td>bar</td><td>0</td></tr>
+				<tr><td>bar</td><td>1</td></tr>
+				<tr><td>line</td><td>1, if dots at points are requested, 
+						otherwise 0</td></tr>
+				<tr><td>dot</td><td>1</td></tr>
+				<tr><td>pie</td><td>not applicable</td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>label_yval</td>
+			<td>Boolean to determin whether or not the y value is labelled
+			against a datapoint. Defaults vary per graph type. When only the
+			x or y value is to be labelled, just the value at that point
+			is written there; when both values are to be labelled, a label
+			like (x,y) is rendered.</td>
+			<td><table border="0">
+				<tr><th>graph type</th><th>label_xval default</th></tr>
+				<tr><td>bar</td><td>1</td></tr>
+				<tr><td>bar</td><td>0</td></tr>
+				<tr><td>line</td><td>1, if dots at points are requested, 
+						otherwise 0</td></tr>
+				<tr><td>dot</td><td>1</td></tr>
+				<tr><td>pie</td><td>not applicable</td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>dot_diam</td>
+			<td>Diameter of dots, in px, to be used when drawing a dot
+			graph or a line graph with extra dots are requested with 
+			the linedots parameter</td>
+			<td>7</td>
+		</tr>
+		<tr>
+			<td>linedots</td>
+			<td>Boolean to determine whether or not dots are drawn
+			on the datapoints in addition to the lines connecting
+			datapoints for a line graph.</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>pie_tperc</td>
+			<td>Thickness of a pie graph's pie, as a percentage of
+			the pie graph's actual width.</td>
+			<td>0.05</td>
+		</tr>
+		<tr>
+			<td>pie_wperc</td>
+			<td>Width of the pie, as a percentage of the available
+			graphing space. Width and height of the pie can be tweaked to
+			alter the perceived aspect.</td>
+			<td>0.95</td>
+		</tr>
+		<tr>
+			<td>pie_hperc</td>
+			<td>Height of the pie, as a percentage of the available
+			graphing space. Width and height of the pie can be tweaked to
+			alter the perceived aspect.</td>
+			<td>0.60</td>
+		</tr>
+		<tr>
+			<td>square</td>
+			<td>Boolean to determine whether or not the axes should be
+			made square. When the axes are square, the aspect of the 
+			bar, line or dot graph is more &quot;correct&quot;, for
+			example, the equation y = x will actually produce a 45 degree
+			line. But the graph may have a lot of wasted space in the
+			available graphic area.</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>debug</td>
+			<td>Boolean to set the debug mode of Multigraph. When set to
+			1, the class outputs its logging instead of the graphic that
+			it would have -- check out the links on the test_multigraph.php
+			page.</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>scriptbase</td>
+			<td>Path to the multigraph.php file, for use in url generation.</td>
+			<td>multigraph.php</td>
+		</tr>
+	</table>
+<p>Check out the test_multigraph.php to see how simple usage of the class
+really is. Also, it's quite possible to make something more useful for a 
+task with inheritence or composition. I've used inheritence to create
+a class Eqn_multigraph, which draws the graph of an equation in the form
+y = f(x). It's not exactly award-winning material, and it's not safe against
+malicious users -- it's more of a demonstration than anything else. I also
+plan to create a class that uses composition to graph the output of a sql 
+statement -- in fact, that was the whole point of this endeavour. I may even
+include that class in this collection, when it is done ^_^
+</div>
+<!-- >>> -->
+<p style="text-align:right">Author: Dave McColl, 2005-05-08</p>
+</body>
+</html>

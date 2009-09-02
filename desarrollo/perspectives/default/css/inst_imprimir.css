@@ -1,0 +1,153 @@
+/*
+ *	EGR - 19/07/2007
+ *
+ *	Estilos para la vista de impresión de instancias
+ *
+ */
+
+/******************************************************
+				- GENERALES - 
+*******************************************************/
+
+#contenedor {
+	width: 100%;
+	height: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;;
+}
+
+H1, H2, P {
+	margin: 0;
+}
+
+A, IMG, TABLE {
+	border:0;
+}
+
+H1.instancia_titulo {
+	font-size: 16pt;
+	text-align: center;
+}
+
+CENTER {
+	font-size: 9pt;
+}
+
+UL {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+/* FIN GENERALES*/
+
+
+
+
+/* Estilos para el PATH: >> RAIZ >> Instancia */
+UL#path {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+UL#path LI {
+	margin: 0;
+	padding: 0;
+	height: 20px;
+	border: 0;
+	float: left;
+	line-height: 20px;
+	overflow: hidden;
+	color: #ADAE7B;
+}
+
+UL#path LI IMG {
+	margin-top: 0;
+}
+
+UL#path LI A, UL#path LI A:focus, UL#path LI A:active, UL#path LI A:link, UL#path LI A:visited {
+	color: #ADAE7B;
+	text-decoration: none;
+}
+
+UL#path LI A:HOVER {
+	color: #4A7184;
+}
+
+
+/* SECCION IMAGENES / ARCHIVOS */
+#inst_ver_der {
+	width: 120px;
+	float: right;
+}
+
+
+UL#campos LI.autor {
+	font-weight: bold;
+}
+
+UL#campos LI SPAN {
+	font-weight: bold;
+}
+
+UL#campos LI P {
+	text-indent: 15px;
+}
+
+
+/* LINK "Atrás" */
+P.volver {
+	text-align: left;
+}
+
+P.volver IMG {
+	float: left;
+}
+
+
+
+/******************************************************
+		BLOQUE IMAGENES // IMAGENES CONTENIDO
+*******************************************************/
+P.titulo {
+	margin: 0;
+	text-align: center;
+	font-weight:bold;
+}
+
+UL.img_view_ins {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+UL.img_view_ins LI {
+	text-align: center;
+}
+
+UL.img_view_ins LI SPAN {
+	font-weight: bold;
+}
+
+
+.bl_image_frame {
+	width: auto;
+	height: auto;
+	padding-top: 5px;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF; 
+	text-align: center;
+}
+
+
+
+
+
+
+/** FIXES / MISC  **/
+
+/* CLEAR */
+.clear_box {
+	clear: both;
+}

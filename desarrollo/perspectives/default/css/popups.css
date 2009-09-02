@@ -1,0 +1,314 @@
+/*
+ *	EGR - 16/07/2007
+ *
+ *	Estilos para POP UPs
+ *
+ */
+
+/******************************************************
+				- BASE / MAIN - 
+*******************************************************/
+
+HTML, BODY {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+BODY {
+	/* dimensiones */
+	padding: 0;
+	margin: 0;
+
+	/* default font del POP-UP */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+IMG {
+	border: 0;
+}
+
+TABLE {
+	border: 0;
+}
+
+H1, H2, H3 {
+	margin: 0;
+	text-align: center;
+}
+
+H2 {
+	font-size: 12pt;
+}
+
+H3 {
+	font-size: 10pt;
+}
+
+UL {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+H2.title {
+	font-size: 12pt;
+	color: #333333;
+	text-align: center;
+}
+
+
+/******************************************************
+				- STYLES GENERAL - 
+*******************************************************/
+
+#container {
+	width: 98%;
+	height: 98%;
+	margin-left: 1%;
+	margin-top: 1%;
+}
+
+#top-cerrar {
+	width: 100%;
+	height: auto;
+	text-align: right;
+}
+
+#top-cerrar A {
+	color: #D45200;
+	text-decoration: none;
+}
+
+/* CENTRO / CONTENIDOS */
+DIV#center {
+	color: #006699;
+	text-align: center;
+}
+
+DIV#center SPAN {
+	font-weight: normal;
+	color: #000000;
+}
+
+/* Errores */
+DIV#error {
+	color: red;
+	font-size: 11pt;
+}
+
+DIV#error UL LI {
+	color: red;
+	font-size: 10pt;
+}
+
+
+/******************************************************
+		- ENCUADRADO Y ALINEAMIENTO: Inputs - 
+*******************************************************/
+DIV#frame {
+	width: 80%;
+	margin: auto;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	border: 1px #00659C solid;
+	background-color: #EFEBDE;
+	color: #000000;
+}
+
+DIV#frame SPAN {
+	color: #00659C;
+}
+
+DIV#frame_margin {
+	margin: 10px;
+}
+
+DIV#outer_frame {
+	width: 98%;
+	height: 89%;
+	margin: auto;
+	border: 2px gray groove;
+}
+
+/* Titulo de instancia */
+DIV#outer_frame SPAN#titulo {
+	font-size: 12pt;
+}
+
+/* TITULO DE CAMPO */
+DIV#outer_frame UL LI SPAN {
+	font-weight: bold;
+}
+
+DIV#outer_frame_margin {
+	margin: 20px;
+}
+
+DIV.blue_box {
+	width: 80%;
+	margin: auto;
+	padding: 3px;
+	margin-top: 10%;
+	height: auto;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+/* CAMPO (Ej. Nombre) */
+LI.campo {
+	width: 140px;
+	float: left;
+	text-align: right;
+}
+
+LI.campo SPAN {
+	font-weight: normal;
+	color: red;
+}
+
+/* VALOR (Ej: <input type="text" ... />) */
+LI.valor {
+	text-align: left;
+	float: none;
+	margin-bottom: 6px;
+}
+
+
+/******************************************************
+					- FORMS -
+			Estilos para formularios
+
+*******************************************************/
+
+/* GLOBALES [usado para login principal] */
+
+FORM INPUT.input_text {
+	font-size: 8pt;
+	border: 1px #000000 solid;
+	background-color: #ffffff;
+	background-image: url('http://eximius.dev/images/degfrag.gif');
+	background-repeat: repeat-x;
+}
+
+FORM .txt_area {
+	font-size: 8pt;
+	border: 1px #000000 solid;
+	background-color: #ffffff;
+}
+
+FORM INPUT.button {
+	width: 60px;
+	text-align: center;
+	border: 1px #000000 solid;
+	background-image: url('http://eximius.dev/images/degfrag.gif');
+}
+
+
+/******************************************************
+			- SLIDESHOW DE IMAGENES - 
+*******************************************************/
+
+#slide_container {
+	width: 90%;
+	height:90%;
+	margin:auto;
+	margin-top: 5%;
+}
+
+#frame_A {
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+#frame_A_margen {
+	margin: 10px;
+}
+
+#slide_container P {
+	text-align: center;
+}
+
+#slide_container .titulo {
+	color: #00659C;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+#slide_container #image {
+	width: 100%;
+	text-align: center;
+}
+
+#slide_container #image IMG {
+	border: 2px #00659C solid;
+	margin: auto;
+}
+
+#slide_container #pager {
+	text-align: center;
+}
+
+
+/******************************************************
+			- FORMULARIO MODIFICAR - 
+*******************************************************/
+P.botones {
+	text-align: right;
+}
+
+.frm_titulo {
+	color: #00659C;
+	font-weight:bold;
+}
+
+
+
+
+
+
+FORM INPUT.input_text {
+	font-size: 8pt;
+	border: 1px #000000 solid;
+	background-color: #ffffff;
+	background-image: url('http://eximius.dev/images/degfrag.gif');
+	background-repeat: repeat-x;
+}
+
+FORM INPUT.button {
+	font-size: 8pt;
+	height: 17px;
+	line-height: 13px;
+	border: 1px #000000 solid;
+	background-image: url('http://eximius.dev/images/degfrag.gif');
+}
+
+#frm_container {
+	width: 80%;
+	height: auto;
+	margin: auto;
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Errores */
+
+DIV.error {
+	color: red;
+	font-size: 11pt;
+}
+
+DIV.error UL LI {
+	color: red;
+	font-size: 10pt;
+}

@@ -1,0 +1,6 @@
+- Esta libreria no funciona completamente con ERROR = E_ALL
+- En las pruebas no se pudo hacer que PIECHART cambiara de colores, ni mostrara mas de dos (azul y negro)
+
+- Hay una nueva libreria en "graphs"
+funciona mejor, aunque quizas no sea tan vistosa.
+-posiblemente reemplaze a la otra al corto plazo

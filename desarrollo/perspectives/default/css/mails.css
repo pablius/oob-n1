@@ -1,0 +1,229 @@
+/*
+ *					ESTILOS PARA EMAILS
+ *
+ */
+BODY {
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	font-family: verdana, arial, sans;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+UL {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+UL LI {
+
+}
+
+IMG, TABLE {
+	border:0;
+}
+
+/*	*	*	*	*	*	*	*
+		LOST PASS MAIL
+*	*	*	*	*	*	*	*/
+#lp_container {
+	width:100%;
+	height:auto;
+	margin:auto;
+	padding: 20px;
+	color: #787878;
+}
+
+#lp_container #head {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+#lp_container #head, #lp_container #body {
+	margin: auto;
+}
+
+#lp_container #body {
+	width: 70%;
+	text-align: center;
+}
+
+#lp_container H1 {
+	color: #3C3C3C;
+}
+
+#lp_container UL {
+	margin: 15px;
+}
+
+#lp_container UL LI SPAN {
+	font-weight: bold;
+	color: #3C3C3C;
+}
+
+#lp_container UL LI.lower {
+	margin-top: 10px;
+}
+
+
+
+/*	*	*	*	*	*	*	*
+	INSTANCIA MAIL
+*	*	*	*	*	*	*	*/
+
+#inst_container {
+	width: 85%;
+	height: auto;
+	margin: auto;
+	color: #000000;
+}
+
+#inst_head {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	margin-bottom:40px;
+}
+
+#inst_container P {
+	text-align: center;
+	color: #000000;
+	font-weight: bold;
+}
+
+#inst_container P SPAN {
+	color: #00659C;
+}
+
+#inst_container DIV#frame {
+	width: 100%;
+	height: auto;
+	margin: auto;
+	text-align: center;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+/* MARGEN para "DIV#frame". (NO. no usar PADDING.) */
+#inst_container DIV#frame DIV#margen {
+	margin: 20px;
+}
+
+/* <P>arrafo que escribió el usuario desde la web */
+#inst_container DIV#frame DIV#margen P {
+	font-weight: normal;
+}
+
+#inst_container DIV#frame B {
+	color: #00659C;
+	font-size: 12pt;
+}
+
+P.normal, SPAN.normal {
+	font-weight: normal;
+}
+
+#foot {
+	width: 100%;
+	height: auto;
+}
+
+#foot P {
+	text-align: right;
+}
+
+#foot P A {
+	text-decoration: none;
+	font-weight: bold;
+	color: orange;
+}
+
+#foot P A:HOVER {
+	text-decoration: underline;
+}
+
+#inst_container #volver {
+	width:50px;
+	height:auto;
+	margin:auto;
+}
+
+#inst_container #volver IMG {
+	float: left;
+}
+
+#inst_container #volver DIV {
+	height: 20px;
+	line-height: 20px;
+}
+
+
+
+
+
+
+/*	*	*	*	*	*	*	*	*	*	*	*	*
+	RECORDATORIO MAIL	y	FORMULARIO MAIL
+*	*	*	*	*	*	*	*	*	*	*	*	*/
+
+#rec_container {
+	width:50%;
+	margin:auto;
+	margin-top: 20px;
+	color:#000000;
+	text-align: center;
+	font-weight: normal;
+	border-top: 1px gray solid;
+	border-right: 1px black solid;
+	border-left: 1px gray solid;
+	border-bottom: 1px black solid;
+	padding: 20px;
+}
+
+#rec_container SPAN.titulo {
+	color: #00659C;
+	font-weight: bold;
+}
+
+#rec_container SPAN.recordatorio {
+	color: #00659C;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+#rec_container #frame {
+	width: 100%;
+	height: auto;
+	text-align: left;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+#rec_container #frame #margen {
+	margin: 10px;
+}
+
+#rec_container #foot {
+	width: 100%;
+	height: auto;
+	background-color: #000000;
+	border: 1px #000000 solid;
+}
+
+#rec_container #foot {
+	text-align: right;
+}
+
+#rec_container #foot P A {
+	text-decoration: none;
+	font-weight: bold;
+	color: orange;
+}
+
+#rec_container #foot P A:HOVER {
+	text-decoration: underline;
+}

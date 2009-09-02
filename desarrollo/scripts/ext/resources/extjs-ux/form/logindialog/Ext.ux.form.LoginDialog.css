@@ -1,0 +1,6 @@
+.ux-auth-header-icon {background: url(img/icons/small/locked.gif) 0 4px no-repeat !important;}
+.ux-auth-header {background:transparent url(img/icons/large/lock.gif) no-repeat center right;padding:10px;padding-right:45px;font-weight:bold;}
+.ux-auth-login {background-image: url(img/icons/medium/key.gif) !important}
+.ux-auth-close {background-image: url(img/icons/medium/close.gif) !important}
+.ux-auth-header .error {color:red;}
+.ux-auth-form {padding:10px;}

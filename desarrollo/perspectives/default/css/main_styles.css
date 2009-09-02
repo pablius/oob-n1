@@ -1,0 +1,1831 @@
+/*
+ *	27/06/2007 : EGR
+ *
+ *	Hoja de estilos principal del sistema.
+ *
+ *
+ *
+ */
+
+
+/******************************************************
+				- BASE / MAIN - 
+		Estilos para elementos HTML base
+
+*******************************************************/
+
+BODY {
+	/* dimensiones */
+	padding: 0;
+	margin: 0;
+
+	/* default font del sitio */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+
+	background-image: url('http://eximius.dev/images/fondo-body.jpg');
+}
+
+IMG {
+	border: 0;
+}
+
+TABLE {
+	border: 0;
+}
+
+H1, H2, H3 {
+	margin: 0;
+}
+
+
+
+
+
+/******************************************************
+				- MAIN UNIQUES - 
+		Estilos para elementos UNICOS (con #ID)
+
+*******************************************************/
+
+
+/* CONTENEDOR principal del site */
+#contenedor {
+	width: 900px;
+	height: auto;
+	overflow: hidden;
+	background-color: #ffffff;
+	margin: auto;
+}
+
+
+/* HEADER: Contiene el encabezado (flash, imagen, etc) */
+#header {
+	width: 900px;
+	height: auto;
+	overflow: hidden;
+	background-color: #ffffff;
+}
+
+/* TOOL BAR: Barra con herramientas de idioma, etc. Debajo del header
+			AJUSTAR AL ALTO (height) DE LA IMAGEN
+*/
+#toolbar {
+	width: 900px;
+	height: 66px;
+	overflow: hidden;
+	background-color: #4D7086;
+}
+
+
+/* CUERPO: Contenedor. Menú e Información */
+#body_main {
+	width: 900px;
+	height: auto;
+	overflow: hidden;
+	background-color: #FFFFFF;
+}
+
+
+/* FOOTER: Pie de página */
+#footer {
+	width: 900px;
+	height: auto;
+	overflow: hidden;
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+#footer .left_side {
+	text-align: left;
+	float: left;
+	margin: 6px;
+}
+
+#footer .right_side {
+	text-align: right;
+	float: right;
+	margin: 6px;
+}
+
+
+
+
+
+/******************************************************
+				- MAIN MENU -
+		Estilos para el menú principal
+
+*******************************************************/
+
+
+/* CONTENEDOR DEL MENU */
+#menu_container {
+	width: 15%;
+	margin-right: 10px;						/* Ajustar al márgen global */
+	height: auto;
+	border: 1px #4D7086 solid;
+	background-image: url('http://eximius.dev/images/bg-main_menu.jpg');
+	background-repeat: repeat-x;
+
+	float: left;
+}
+
+
+/* UL */
+UL#main_menu {
+	padding: 0;
+	margin-top: 0;
+	margin-bottom:0;
+	margin-left: 10px;
+	margin-right: 10px;
+	list-style-type: none;
+}
+
+/* LI con separador */
+UL#main_menu li.sep {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px #CAD5DB solid;
+}
+
+/* LI sin separador */
+UL#main_menu li {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/* LINKS dentro de la lista */
+UL#main_menu li a, UL#main_menu li a:link {
+	color: #006699;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 11px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+/* Instancia Hand Over para los links */
+UL#main_menu li a:hover {
+	text-decoration: underline;
+	color: #ADAF7B;
+}
+
+/* SPAN contenedora del bullet. Poner "display: none;" para desaparecerla */
+UL#main_menu li span img {
+	margin-right: 8px;
+	margin-bottom: 1px;
+}
+
+
+
+
+
+/******************************************************
+				- DISPLAY DE INFORMACION -
+		Estilos para el area informativa del sitio
+
+*******************************************************/
+
+
+/* Contenedor */
+#content {	
+	width: 736px;								/* Considerar márgenes */
+	background-color: #ffffff;
+	float: left;
+}
+
+/* Login Area */
+#login_box {
+	width: 734px;								/* Descontamos 2px de los márgenes */
+	height: auto;
+	border: 1px #006699 solid;
+	background-color: #E2E7EA;
+	margin-bottom: 10px;
+	float: left;
+}
+
+/* Tabla / Lista de LOGIN dentro del Login Box */
+#login_box UL {
+	margin: 7px;
+	padding:0;
+	list-style-type: none;
+}
+
+/* CAMPOS */
+#login_box UL LI {
+	float: right;
+}
+
+/* Espaciamiento entre USER y PASSWORD */
+#login_box UL LI.table_sep {
+	width: 2%;
+	height: 10px;
+}
+
+
+/* Dejamos un poco de aire entre el foot y los contenidos */
+#aire_footer {
+	width: 100%;
+	height: 30px;
+}
+
+
+/* Instancia: Usuario Logeado */
+#logged_in_box {
+	width: 734px;								/* Descontamos 2px de los márgenes */
+	height: auto;
+	margin-bottom: 10px;
+	text-align: right;
+	float: left;
+}
+
+/* ¿Resaltamos el nombre de usuario? */
+#logged_in_box SPAN {
+	font-weight: bold;
+}
+
+#logged_in_box A, #logged_in_box A:LINK {
+
+}
+
+#logged_in_box A:HOVER {
+
+}
+
+
+/******************************************************
+				- CLASES COMUNES / GENERAL- 
+
+*******************************************************/
+
+/* CUADRO color crema, borde azul */
+.frame_A {
+	width: 99%;
+	height: auto;
+	border: 1px #00659C solid;
+	background-color: #EFEBDE;
+}
+
+.frame_A_margen {
+	margin: 10px;
+}
+
+
+/* Cuadro color celeste, borde azul */
+.frame_B {
+	width: 99%;
+	height: auto;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+.frame_B_margen {
+	margin: 10px;
+}
+
+/* Errores */
+
+DIV.error {
+	color: red;
+	font-size: 11pt;
+}
+
+DIV.error UL LI {
+	color: red;
+	font-size: 10pt;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************
+				- PORTADA GENERAL- 
+	Estilos GENERALES para todos los tipos de portada
+
+*******************************************************/
+
+
+/* Contenedor principal de la portada
+	Puede contener:
+		- #portada_content		-> Si hay contenidos
+		- #portada_no-content	-> Si no hay contenidos
+*/
+#portada_main {
+	width: 100%;
+	height: auto;
+	float: none;
+}
+
+#portada_main DIV.portada_content {
+	width: 100%;
+	height: auto;
+	float:left;
+	margin-bottom: 20px;
+}
+
+
+#portada_main SPAN.portada_no-content {
+	height: auto;
+	margin: 20px;
+	color: maroon;
+	font-size: 14pt;
+}
+
+
+/* TITULOS de sección en PORTADA */
+#portada_main H1, H2 {
+	width: 100%;
+	margin-bottom: 7px;
+}
+
+/* TITULOS SECCION: Link primario (Ej.: Productos) */
+#portada_main H1 a, #portada_main H1 a:link {
+	color: #006699;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+#portada_main H1 a:HOVER {
+	text-decoration: underline;
+}
+
+/* TITULOS ARTICULOS: Link secundario (Ej.: Ergo 30) */
+#portada_main H2 a, #portada_main H2 a:link {
+	color: #ADAF7B;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+#portada_main H2 a:HOVER {
+	text-decoration: underline;
+}
+
+
+
+/**********************************************************************************************
+
+									TIPOS DE PORTADA
+		Cada tipo de portada se corresponde con cada archivo tpl. Por ejemplo,
+									"portada_ver_3.tpl".
+
+		Los estilos son independientes para cada TIPO. Cada tipo puede tener su propio 
+							formato, diseño, estilo, etc.
+
+**********************************************************************************************/
+
+
+
+
+
+/*****************************************
+				- PORTADA TIPO 1 - 
+*****************************************/
+
+.portada_1 {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+
+.portada_1 UL {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+/* ¿Destacamos los campos a mostrar? */
+.portada_1 UL#mostrar_campos LI {	
+
+}
+
+
+/*****************************************
+				- PORTADA TIPO 2 - 
+*****************************************/
+
+.portada_2 {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.portada_2 UL {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.portada_2 UL LI TABLE {
+	width: 100%;
+	text-align: center;
+}
+
+
+/*****************************************
+				- PORTADA TIPO 3 - 
+*****************************************/
+
+.portada_3 {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+
+.portada_3 UL {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style-type: none;
+}
+
+
+/****************************************
+				- PORTADA TIPO 4 - 
+*****************************************/
+
+.portada_4 {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+
+.portada_4 UL {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style-type: none;
+}
+
+
+
+
+/****************************************
+			- PORTADA TIPO 5 - 
+*****************************************/
+
+.portada_5 {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.portada_5 UL {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+
+.portada_5 UL LI TABLE {
+	width: 100%;
+	text-align: center;
+}
+
+/* ¿Resaltamos el NOMBRE de la imagen? */
+.portada_5 UL.campo_nombre {
+
+}
+
+.portada_5 UL LI.campo_imagen {
+	width: 110px;
+	text-align: center;
+	float: none;
+	clear: both;
+}
+
+/* DIV usada para CENTRAR el bloque imagenes_contenido */
+.center_image {
+	width: 110px;
+	margin: auto;
+}
+
+
+/* Contenedor especial para bloque imagen_contenido */
+.img_box {
+	width: 110px;
+	margin: auto;
+}
+
+/******************************************************
+
+				- SEGURIDAD: Login - 
+
+*******************************************************/
+
+
+.midbox {
+	width: 49.9%;
+	height: auto;
+	float: left;
+}
+
+/* Textos Indicativos:
+
+	"Ingrese su contraseña dos veces, para validarla"
+*/
+.midbox SPAN {
+	color: gray;
+}
+
+.midbox SPAN A:HOVER {
+	text-decoration: none;
+}
+
+/* BOX: User Delete */
+.u_delete {
+	width: 25%;
+	height: auto;
+	padding: 5px;
+	font-weight: normal;
+	text-align: center;
+	border: 1px #006699 solid;
+	background-color: #E2E7EA;
+}
+
+.u_delete A:link, .u_delete A:active, .u_delete A:focus, .u_delete A:visited {
+	font-size: 11pt;
+	color: #00659C;
+}
+
+.u_delete A:hover {
+	text-decoration: none;
+}
+
+
+
+/*************************************** TRASH --- NO BORRAR POR AHORA ********************
+																						   *
+																						   *
+																						   */
+
+
+
+.portada_box {
+	width: 49.8%;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+/* TITULO de sección en PORTADA */
+.portada_box H1, H2 {
+	width: 100%;
+	margin-bottom: 7px;
+}
+
+/* TITULO SECCION: Link primario (Ej.: Productos) */
+.portada_box H1 a, .portada_box H1 a:link {
+	color: #006699;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+/* TITULO ARTICULO: Link secundario (Ej.: Ergo 30) */
+.portada_box H2 a, .portada_box H2 a:link {
+	color: #ADAF7B;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+/* IMAGEN */
+.portada_box .box_image {
+	float: left;
+}
+
+/* CONTENIDO */
+.portada_box .box_content {
+	width: 70%;
+	float: left;
+}
+
+.portada_box .box_content p {
+	margin-left: 10px;
+	text-align: justify;
+}
+
+
+/* LISTA: Contiene Titulo y Texto del ARTICULO */
+.portada_box ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+
+
+/*
+ *
+ *
+ *************************************** TRASH --- NO BORRAR POR AHORA ********************/
+
+
+
+
+
+
+/******************************************************
+					- LISTAS -
+			Estructuras / Instancias
+				lista_ver.tpl
+
+*******************************************************/
+
+/* container LISTAS */
+#cont_lista {
+	width: 100%;
+	height: auto;
+	font-weight: normal;
+}
+
+#cont_lista H2 {
+	font-size: 12pt;
+	text-align: center;
+}
+
+/* Descripción de la instancia */
+#cont_lista P.desc {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#cont_lista P.desc SPAN {	/* ¿Resaltamos el nombre de la instancia? */
+	font-weight: bold;
+}
+
+
+/* Estilos para el PATH: >> RAIZ >> Instancia */
+UL#path {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+UL#path LI {
+	margin: 0;
+	padding: 0;
+	height: 20px;
+	border: 0;
+	float: left;
+	line-height: 20px;
+	overflow: hidden;
+	color: #ADAE7B;
+}
+
+UL#path LI IMG {
+	margin-top: 0;
+}
+
+UL#path LI A, UL#path LI A:focus, UL#path LI A:active, UL#path LI A:link, UL#path LI A:visited {
+	color: #ADAE7B;
+	text-decoration: none;
+}
+
+UL#path LI A:HOVER {
+	color: #4A7184;
+}
+
+
+/*********************************************/
+
+/*** CONTENEDORES ***/
+
+#cont_lista .box_contenedores {
+	width:96%;
+	height: auto;
+	margin-left: 0.5%;
+	font-weight: normal;
+	color: #525252;
+}
+
+#cont_lista .box_contenedores SPAN.cont_titulo {
+	font-size: 11pt;
+	font-weight: normal;
+}
+
+#cont_lista .box_contenedores P {
+	margin: 0;
+	font-weight: normal;
+	font-size: 10pt;
+	color: #000000;
+}
+
+#cont_lista .box_contenedores P SPAN {
+	font-weight: bold;
+}
+
+
+
+/*** NO CONTENEDORES ***/
+
+/* Boxes */
+#cont_lista .box_nocontenedores {
+	width: 98%;
+	height: auto;
+	margin-left: 0.5%;
+	border-bottom: 1px gray dotted;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+
+/* Destacamos el TITULO */
+#cont_lista SPAN.title {
+	font-weight: bold;
+	color: #ADAF7B;
+}
+
+/* ¿Destacamos el "Introduccion:" "Descripcion" ? */
+#cont_lista SPAN {
+	font-weight: bold;
+}
+
+
+/*
+		HACER ANDAR ESTE MARGEN
+*/
+#cont_lista .margin {
+	width: auto;
+	height: auto;
+	margin: 10px;
+}
+
+
+/* Sector IMAGEN ASOCIADA: bl_imagenes_contenido.tpl */
+
+/* Contendor del modulo, flotado a la derecha */
+DIV.oob_img_right {
+	float: right;
+}
+
+TABLE.img_view {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+TABLE.img_view P {
+	margin: 0;
+	padding-top: 5px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
+
+
+
+
+/******************************************************
+					- INSTANCIAS -
+			Estructuras / Instancias
+				instancia_ver.tpl
+
+*******************************************************/
+
+#inst_ver_der {
+	height: auto;
+	width: 120px;
+	float: right;
+}
+
+P.autor {
+
+}
+
+P.autor SPAN {
+	font-weight: bold;
+}
+
+UL.campos {
+	padding:0;
+	margin:0;
+	list-style-type: none;
+}
+
+
+/* CAMPOS */
+UL.campos LI {
+	padding:0;
+	margin: 0;
+}
+
+/* CAMPO NAME */
+UL.campos LI SPAN {
+	text-decoration: underline;
+}
+
+/* CAMPO VALUE */
+UL.campos LI P {
+	text-indent: 15px;
+}
+
+
+/* IMAGE OPTIONS */
+UL#img_options {
+	padding:0;
+	margin:0;
+	list-style-type: none;
+}
+
+UL#img_options LI {
+	width: 30px;
+	height: auto;
+	float: left;
+}
+
+UL.inst_options {
+	margin:0;
+	padding:0; 
+	list-style-type:none; 
+	text-align: center;
+}
+
+
+UL.inst_options LI {
+	display: inline;
+}
+
+
+
+/******************************************************
+		BLOQUE IMAGENES // IMAGENES CONTENIDO
+*******************************************************/
+P.titulo {
+	margin: 0;
+	text-align: center;
+	font-weight:bold;
+}
+
+UL.img_view_ins {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+UL.img_view_ins LI {
+	text-align: center;
+}
+
+UL.img_view_ins LI.desc {
+	font-size: 8pt;
+}
+
+UL.img_view_ins LI SPAN {
+	font-weight: bold;
+}
+
+
+.bl_image_frame {
+	width: auto;
+	height: auto;
+	padding-top: 5px;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF; 
+	text-align: center;
+}
+
+
+/* IMAGENES CONTENIDO */
+.bl_imagecont_frame {
+	width: 110px;
+	height: auto;
+	padding-top: 5px;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF; 
+	text-align: center;
+}
+
+
+
+
+/******************************************************
+				BLOQUE ARCHIVOS
+*******************************************************/
+
+#bl_files {
+
+}
+
+#bl_files UL {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+#bl_files UL LI {
+
+}
+
+#bl_files UL LI.center {
+	text-align: center;
+}
+
+#bl_files UL LI A.lnk {
+	text-decoration: none;
+}
+
+#bl_files UL LI.lnk A:hover {
+	text-decoration: underline;
+}
+
+#bl_files UL LI.desc {
+	font-size: 8pt;
+}
+
+.bl_file_frame {
+	width: auto;
+	height: auto;
+	padding-top: 5px;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF; 
+	text-align: center;
+}
+
+.bl_file_frame_margen {
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+
+
+
+/******************************************************
+					- FORMS -
+			Estilos para formularios
+
+*******************************************************/
+
+/* GLOBALES [usado para login principal] */
+
+FORM INPUT.input_text {
+	font-size: 8pt;
+	border: 1px #000000 solid;
+	background-color: #ffffff;
+	background-image: url('http://eximius.dev/images/degfrag.gif');
+	background-repeat: repeat-x;
+}
+
+FORM INPUT.button {
+	font-size: 8pt;
+	height: 17px;
+	line-height: 13px;
+	border: 1px #000000 solid;
+	background-image: url('http://eximius.dev/images/degfrag.gif');
+}
+
+
+
+/* SEGURIDAD */
+
+FORM.seguridad INPUT.input_text {
+	width: 25%;
+	font-size: 8pt;
+	color: #3A3A3A;
+	border-top: 1px #3A3A3A solid;
+	border-bottom: 1px #3A3A3A solid;
+	border-bottom: 2px #3A3A3A solid;
+	border-right: 2px #3A3A3A solid;
+	background-color: #ffffff;
+
+	background-image: url('');
+	background-repeat: repeat-x;
+
+}
+
+FORM.seguridad INPUT.button {
+	font-size: 8pt;
+	height: auto;
+	line-height: normal;
+	border-top: 1px #3A3A3A solid;
+	border-bottom: 1px #3A3A3A solid;
+	border-bottom: 2px #3A3A3A solid;
+	border-right: 2px #3A3A3A solid;
+	background-color: #ffffff;
+
+	background-image: url('');
+}
+
+/* Texto para titulos de INPUTS (USUARIO, CONTRASEÑA, etc) */
+FORM.seguridad DIV {
+	font-size: 10pt;
+	font-weight: bold;
+	color: #3A3A3A;
+	text-decoration: none;
+}
+
+
+/*** ESTILOS PARA FORMULARIOS INTEGRADOS EN PLANTILLAS ***/
+
+.formulario_instancia {
+	width: 100%;
+	height: auto;
+	font-weight: bold;
+}
+
+
+/* TITULO Azul (actual) en los formularios*/
+SPAN.frm_titulo {
+	color: #00659C;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+/* NOMBRES en los formularios */
+SPAN.frm_campo_nombre {
+	font-weight: bold;
+}
+
+/* DATOS, para forumario MODO X (??) */
+SPAN.frm_datos {
+	font-weight: bold;
+}
+
+.formulario_instancia SPAN.requerido {
+	color: red;
+	font-size: 10pt;
+}
+
+.form_buttons {
+	width: 99%;
+	text-align: right;
+}
+
+
+
+/* ESTILO para mensaje a mostrar al enviar formulario */
+.form_mensaje {
+	font-size: 10pt;
+	font-weight: bold;
+	color: orange;
+	text-align: center;
+}
+
+
+
+
+/******************************************************
+				- GLOBAL y ARREGLOS MENORES -
+		Clases que conforman estilos globales
+
+*******************************************************/
+
+/* Defino un margen común */
+.margin_common {
+	margin: 10px;
+}
+
+/* Floating Clear DIV */
+.clear_box {
+	clear: both;
+}
+
+/* Horizontal Line -- Reemplazo para los <hr> -- USO: <div class="hzl"></div> */
+.hzl {
+	width: 100%;
+	height: 1px;
+	margin-top: 6px;
+	margin-bottom: 4px;
+	border-top: 1px gray dotted;
+	background-image: url("images/degfrag.gif");
+	background-repeat: repeat-x;
+	overflow: hidden;
+}
+
+/* Parrafo Enmarcado */
+P.frame {
+	margin: 2px;
+	padding: 2px;
+	background-color: #E0E0E0;
+	color: #4D7086;
+}
+
+/* Texto destacado para ciertos avisos. Por ejemplo, al recuperar PASSWORD: "Se ha enviado un correo a..." */
+P.notice {
+	width: 50%;
+	height: auto;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 8px;
+	border: 1px #006699 solid;
+	background-color: #E0E0E0;
+	font-size: 11pt;
+	color: #2A2A2A;
+}
+
+/* Titulos Destacados al principio de la página */
+H2.title {
+	font-size: 12pt;
+}
+
+H2.title2 {
+	font-size: 12pt;
+	color: #00659C;
+}
+
+
+H2.instancia_titulo {
+	text-align: center;
+	font-size: 12pt;
+}
+
+
+
+
+
+
+
+
+/******************************************************
+					- IMAGENES VIEW - 
+					imagenes_view.tpl
+
+*******************************************************/
+
+/* CONTENEDOR Seccion IMAGEN A MOSTRAR*/
+#img_view_cont {
+	width: auto;
+	height: auto;
+	text-align: center;
+	float: left;
+}
+
+/* LINKS Tamaños de imagenes */
+UL#img_view_options {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+UL#img_view_options LI {
+	display: inline;
+}
+
+UL#img_view_options LI A {
+	text-decoration: none;
+}
+
+UL#img_view_options LI A:hover {
+	text-decoration: underline;
+}
+
+
+/* DATA de la imagen */
+
+#img_data_cont {
+	margin-left: 20px;
+}
+
+UL#img_view_data {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+UL#img_view_data LI SPAN {
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************
+					- ARCHIVOS INSTANCIA - 
+					bl_archivos.tpl
+
+*******************************************************/
+
+
+/* Pagina de Visualización (archivos_view.tpl) */
+UL#archivo {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+/* TITULO para "Descripción": Por defecto sin destacar */
+UL#archivo LI DIV {
+
+}
+
+/* PARRAFO de la descripcion */
+UL#archivo LI P {
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+/* TITULOS: Destacados en negrita */
+UL#archivo LI SPAN {
+	font-weight: bold;
+}
+
+DIV#file_download {
+	float: right;
+}
+
+DIV#file_download P {
+	text-align: center;
+}
+
+
+
+
+
+/******************************************************
+				- INSTANCIA LISTAR - 
+					Site Map
+
+*******************************************************/
+
+UL#sitemap {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+}
+
+
+UL#sitemap LI {
+	height: 22px;
+	line-height: 22px;
+	text-indent: 10px;
+}
+
+/* LINKS dentro de la lista */
+UL#sitemap li a, UL#sitemap li a:link {
+	color: #333333;
+	font-size: 13px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* Instancia Hand Over para los links */
+UL#sitemap li a:hover {
+	color: #ADAF7B;
+}
+
+
+
+
+
+.lista1 {
+	background-color: #DBDBDB;
+}
+.lista2 {
+	background-color: #cccccc;
+}
+
+
+
+
+/******************************************************
+					- BUSQUEDA - 
+			Estilos para busquedas 
+
+*******************************************************/
+
+/* LINK a busqueda avanzada */
+P.link_avanzada {
+	text-align: right;
+}
+
+P.link_avanzada A, P.link_avanzada A:ACTIVE, P.link_avanzada A:FOCUS, P.link_avanzada A:VISITED  {
+	color: #ADAF7B;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+P.link_avanzada A:hover {
+	color: #003063;
+}
+
+/* Recuadro para BUSQUEDA (Azul) */
+#frame_busqueda {
+	width: 99.8%;
+	height: auto;
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+/* MARGEN entre el borde del cuadro y el contenido */
+#fb_margen {
+	margin: 10px;
+}
+
+/* Alineación para "cantidad de resultados" */
+P#cantidad {
+	text-align: right;
+}
+
+/* ¿Resaltamos el texto "cantidad de resultados" ? */
+P#cantidad SPAN {
+	font-weight: bold;
+}
+
+/* ¿Alineamos el botón de BUSQUEDA? */
+DIV.boton {
+	margin-top: 20px;
+	text-align: center;
+}
+
+/* Recuadro RESULTADOS (Beige) */
+#frame_resultados {
+	width: 99.8%;
+	height: auto;
+	border: 1px #00659C solid;
+	background-color: #EFEBDE;
+}
+
+/* Margen para el recuadro de resultados y alineación de texto */
+#fr_margen {
+	margin: 6px;
+	text-align: right;
+}
+
+/* ¿Resaltamos en NUMERO de resultados encontrados? */
+#fr_margen SPAN{
+	font-weight: bold;
+}
+
+P.nombre {
+	font-weight: bold;
+	color: #00659C;
+}
+
+
+/******** RESULTADOS ********/
+
+
+/* DIV contenedora individual de resultado */
+DIV.result_box {
+	width: 97%;
+	height: auto;
+	margin: auto;
+	overflow: hidden;
+}
+
+/* ¿Resaltamos los titulos? (Ej.: "Introducción: " */
+DIV.result_box SPAN {
+	font-weight: bold;
+}
+
+
+/* Lista de resultados */
+UL#resultados {
+	padding: 0;
+	margin:0;
+	list-style-type: none;
+}
+
+UL#resultados LI {
+	width: 100%;
+	height: auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+
+/* "NOMBRE" */
+P#nombre {
+	font-weight: bold;
+	color: #00659C;
+}
+
+P#no_results {
+	margin:10px;
+	font-size: 14pt;
+	text-align: center;
+	color: #ADAF7B;
+}
+
+DIV#pager {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+
+
+/* ATRAS / VOLVER */
+P.volver A, P.volver A:link, P.volver A:focus, P.volver A:active, P.volver A:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+P.volver A:HOVER {
+	color: gray;
+}
+
+/******** BUSQUEDA AVANZADA ********/
+
+
+/* Recuadro para BUSQUEDA (Beige) */
+#frame_busqueda_av {
+	width: 99.8%;
+	height: auto;
+	border: 1px #00659C solid;
+	background-color: #EFEBDE;
+}
+
+TABLE#avanzada TD.campo {
+	font-weight: bold;
+	color: #00659C;
+}
+
+TABLE#avanzada TD SPAN {
+	font-weight: bold;
+}
+
+TABLE#avanzada A, TABLE#avanzada A:ACTIVE, TABLE#avanzada A:FOCUS, TABLE#avanzada A:VISITED  {
+	color: #ADAF7B;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+TABLE#avanzada A:hover {
+	color: #003063;
+}
+
+
+#buscables {
+	border: 1px #00659C solid;
+	background-color: #E7E7EF;
+}
+
+
+#buscables_margen {
+	margin: 10px;
+}
+
+
+#buscables P {
+	text-align: center;
+	color: #00659C;
+	font-weight: bold;
+}
+
+
+
+
+/******** CONTROL BLOCK ********/
+
+TABLE#tableCampos {
+	width: 100%;	
+}
+
+TABLE#tableCampos TR {
+
+}
+
+TABLE#tableCampos TD {
+
+}
+
+/* TEXTO "QUITAR" (es el único texto dentro de la única DIV en BL_CONTROLES) */
+A.quitar, A.quitar:FOCUS, A.quitar:VISITED, A.quitar:ACTIVE {
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	color: #FF9A00;
+}
+
+A.quitar:HOVER {
+	text-decoration: underline;
+}
+
+
+
+
+
+/******************************************************
+				- CURRENCY - 
+
+*******************************************************/
+
+/* La tabla donde muestro los resultados */
+TABLE#display {
+	width: 50%;
+	margin:auto;
+	text-align: center;
+}
+
+TABLE#display TR.campos TD {
+	font-weight: bold;
+	color: orange;
+}
+
+TABLE#display TR.valores TD {
+	
+}
+
+
+
+
+
+
+/******************************************************
+					- ERROR - 
+
+*******************************************************/
+
+#er_container {
+	width: 80%;
+	height: auto;
+	margin: auto;
+	padding: 2.5%;
+	text-align: center;
+	border: 2px #BE2D2D solid;
+	margin-top: 20px;
+	background-color: #EAEAEA;
+}
+
+#er_container P.oob{
+	text-align: right;
+	margin:0;
+	height: 15px;
+	line-height: 15px;
+}
+
+#er_container P.foot {
+	margin:0;
+	height: 17px;
+	line-height: 17px;
+	text-indent: 3px;
+	text-align: left;
+	background-color: gray;
+}
+
+
+.black {
+	width: 100%;
+	height:16px;
+	background-color: #BE2D2D;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************
+					- DIRECTORY VIEWS - 
+					IMAGENES y ARCHIVOS
+
+*******************************************************/
+
+UL.dir_view_imagenes, UL.dir_view_archivos {
+	margin: 0;
+	padding:0;
+	list-style-type: none;
+}
+
+/* Nombres de directorios */
+UL.dir_view_imagenes LI.titulo, UL.dir_view_archivos LI.titulo {
+	font-weight: bold;
+	color: #00659C;
+	background-color: #ffffff;
+}
+
+
+/* ENLACES */
+UL.dir_view_imagenes LI A, UL.dir_view_archivos LI A, UL.dir_view_imagenes LI A:ACTIVE, UL.dir_view_archivos LI A:ACTIVE, UL.dir_view_imagenes LI A:FOCUS, UL.dir_view_archivos LI A:FOCUS, UL.dir_view_imagenes LI A:VISITED, UL.dir_view_archivos LI A:VISITED {
+	font-weight: bold;
+	text-decoration: none;
+	color: #333333;
+}
+
+UL.dir_view_imagenes LI A:HOVER, UL.dir_view_archivos LI A:HOVER {
+	color: gray;
+}
+
+/* MENSAJE: No hay directorios... */
+UL.dir_view_imagenes LI P, UL.dir_view_archivos LI P, P.no_files {
+	margin: 0;
+	text-align: center;
+	color: orange;
+	font-size: 10pt;
+	font-weight: bold;
+	background-color: #ffffff;
+}
+
+
+/* ALTERNAMOS ENTRE ESTOS BG */
+UL.dir_view_imagenes, UL.dir_view_archivos LI.lista1 {
+	background-color: #DBDBDB;
+}
+UL.dir_view_imagenes, UL.dir_view_archivos LI.lista2 {
+	background-color: #cccccc;
+}
+
+
+/* TITULO y DESC "SUPERIORES" */
+P.archivo_titulos, P.img_titulos {
+	margin:0;
+	text-align: center;
+	font-weight: bold;
+	color:#00659C;
+	font-size: 12pt;
+}
+
+/* DSCRIPCION bajo TITULO "SUPERIOR" */
+P.img_titulos SPAN {
+	color: #333333;
+	font-size: 8pt;
+}
+
+
+/* links DIRECTORIOS */
+A.dir, A.dir:ACTIVE, A.dir:FOCUS, A.dir:VISITED {
+	color:#ADAE7B;
+	text-decoration: none;
+}
+
+A.dir:HOVER {
+	text-decoration: underline;
+}
+
+
+/* MUESTRA DE IMAGENES */
+
+
+#cont_images {
+	width: 100%;
+}
+
+
+/* Contenedor para la BOX con la imagen */
+.img_slot {
+	width: 33.3%;
+	float: left; 
+}
+
+
+.image_box {
+	width: 220px;
+	height: 220px;
+
+	border: 1px #00659C solid;
+	background-color: #E7E7EF; 
+	text-align: center;
+	margin: auto;
+}
+
+.image_box_margen {
+	margin: 20px;
+	margin-bottom:5px;
+}
+
+
+
+
+
+
+
+
+/******************************************************
+					- DIRECTORY VIEW - 
+						ARCHIVOS
+
+*******************************************************/
+
+.icono_file {
+	float: left;
+}
+
+.file_desc {
+	text-align: center;
+}
+
+.file_desc A:link, .file_desc A:focus, .file_desc A:active, .file_desc A:visited {
+	color: #ADAE7B;
+	font-weight: bold;
+}
+
+.file_desc A:hover {
+	color: #4A7184;
+}
+
+
+/******************************************************
+					- FIXES - 
+		Algunos fixes para IE y otros browsers.
+		(se recomienda no modificar esta sección)
+
+*******************************************************/
+
+/* FLOATS para Internet Explorer */
+.ie_fix_fleft {
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	float: left;
+}
+
+.ie_fix_fright {
+	width: auto;
+	height: auto;
+	overflow: hidden;
+
+	float: right;
+}
+
+
+
+
+
+
+/******************************************************
+					- LINKS - 
+		ESTILOS para los diferentes tipos de LINKS
+*******************************************************/
+
+/* INSTANCIAS */
+A.instancia, A.instancia:LINK, A.instancia:FOCUS, A.instancia:VISITED, A.instancia:LINK {
+	color: #ADAE7B;
+	text-decoration: none;
+}
+
+A.instancia:HOVER {
+	color: #071465;
+}
+
+
+/* INSTANCIA -> CONTENEDORES */
+A.instancia_c, A.instancia_c:LINK, A.instancia_c:FOCUS, A.instancia_c:VISITED, A.instancia_c:LINK {
+	color: #ADAE7B;
+	font-size:12pt;
+	text-decoration: none;
+}
+
+A.instancia_c:HOVER {
+	color: #071465;
+}
+
+
+/* BLOQUES IMAGEN Y ARCHIVO */
+
+A.img_link:link, A.file_link:link, A.img_link:focus, A.file_link:focus, A.img_link:active, A.file_link:active, A.img_link:visited, A.file_link:visited {
+	font-size: 8pt;
+	color: #848284;
+	text-decoration: none;
+}
+
+A.img_link:hover, A.file_link:hover {
+	text-decoration: underline;
+}

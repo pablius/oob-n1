@@ -1,0 +1,607 @@
+@charset "utf-8";
+img{
+	border:none;
+}
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin:0px;
+	background-color: #F2F1F1;
+
+}
+.tiulo1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 21px;
+	color: #ECDBA8;
+	font-weight: bold;
+	font-style: italic;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #415454;
+}
+.botonera {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #EBEBEB;
+	text-decoration: none;
+	padding-bottom:4px;
+	padding-right:2px;
+	
+}
+.botonera:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #ECDBA8;
+	text-decoration: underline;
+}
+
+td {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+th {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.bodystyle {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.small {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+
+.medium {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.big {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+.xbig {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+}
+
+.expanded {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 2px;
+}
+
+.justified {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-align: justify;
+}
+
+.style1 {
+	font-size: 24px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style2 {
+	font-size: 9px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	letter-spacing: -1px;
+}
+.style2-1 {
+	font-size: 9px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	letter-spacing: -1px;
+	color: #FF0000;
+}
+.style3 {color: #FFFFFF}
+body,td,th {
+	color: #000000;
+}
+
+.white:link
+{
+color: #ffffff;
+}
+
+.white:hover
+{
+text-decoration: underline;
+}
+.fdo-encabezado {
+	background-image: url("http://economia.nutus.info/images/enca-rojo.jpg");
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+.sombra-bot-der {
+	background-image: url("http://economia.nutus.info/images/sombra-der.jpg");
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+.sombra-bot-abajo {
+	background-image: url("http://economia.nutus.info/images/sombra-abajo.jpg");
+	background-repeat: repeat-x;
+	background-position: left top;
+	
+}
+.fondo-botonera {
+	background-image: url("http://economia.nutus.info/images/degra-botonera.jpg");
+	background-repeat: repeat-x;
+	background-position: left top;
+	background-color: #B8B1AB;
+}
+.botonera-2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF3333;
+	text-decoration: none;
+}
+.botonera-2:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+select, input {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	background-color: #EFEFEF;
+	background-repeat: repeat-x;
+	background-position: right top;
+	font-size: 12px;
+	border-top-width: 1px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #666666;
+	border-right-color: #666666;
+	border-bottom-color: #666666;
+	border-left-color: #666666;
+}
+.titulo2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px;
+	font-style: italic;
+	font-weight: bold;
+	color: #737574;
+	text-decoration: none;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: none;
+	border-bottom-style: solid;
+	border-top-color: #FF6600;
+	border-right-color: #FF6600;
+	border-bottom-color: #003366;
+	border-left-color: #FF6600;
+}
+.titulo4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+	color: #737574;
+	text-decoration: none;
+	border-top-width: 1px;
+	border-bottom-width: 2px;
+	border-top-style: none;
+	border-bottom-style: double;
+	border-top-color: #FF6600;
+	border-right-color: #FF6600;
+	border-bottom-color: #003366;
+	border-left-color: #FF6600;
+}
+.cuadro-arriba {
+	background-image: url("http://economia.nutus.info/images/caja-top.jpg");
+	background-repeat: repeat-x;
+	background-position: left top;
+	background-color: #C5C8C4;
+}
+.cuadro-arriba-bde-der {
+	background-image: url("http://economia.nutus.info/images/caja-top.jpg");
+	background-repeat: repeat-x;
+	background-position: left top;
+	background-color: #C5C8C4;
+	border-right-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: none;
+	border-left-style: solid;
+	border-top-color: #78827A;
+	border-right-color: #78827A;
+	border-bottom-color: #78827A;
+	border-left-color: #78827A;
+	border-left-width: 1px;
+	border-top-width: 1px;
+}
+.cuadro-arriba-bde-izq {
+	background-image: url("http://economia.nutus.info/images/caja-top.jpg");
+	background-repeat: repeat-x;
+	background-position: left top;
+	background-color: #C5C8C4;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-left-style: solid;
+	border-bottom-style: none;
+	border-left-style: solid;
+	border-top-color: #78827A;
+	border-left-color: #78827A;
+	border-bottom-color: #78827A;
+	border-left-color: #78827A;
+	border-right-style: solid;
+	border-right-color: #78827A;
+}
+
+.boton1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: oblique;
+	font-weight: bold;
+	color: #006699;
+	text-decoration: none;
+}
+
+.boton1:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: oblique;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+.boton2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: oblique;
+	font-weight: bold;
+	color: #FF6600;
+	text-decoration: none;
+}
+.boton2:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: oblique;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+.titulo3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: oblique;
+	font-weight: normal;
+	color: #CC0000;
+	text-decoration: none;
+}
+
+.cuadro-abajo_2 {
+	background-color: #DBDBDB;
+}
+
+.cuadro-abajo {
+	background-image: url("http://economia.nutus.info/images/caja-down.jpg");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: #DBDBDB;
+}
+.cuadro-abajo-bde-der {
+	background-image: url("http://economia.nutus.info/images/caja-down.jpg");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: #DBDBDB;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-top-color: #78827B;
+	border-right-color: #78827B;
+	border-bottom-color: #78827B;
+	border-left-color: #78827B;
+}
+.cuadro-abajo-bde-izq {
+	background-image: url("http://economia.nutus.info/images/caja-down.jpg");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: #DBDBDB;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-top-color: #78827B;
+	border-left-color: #78827B;
+	border-bottom-color: #78827B;
+	border-left-color: #78827B;
+}
+.cuadro-abajo-bde-der-izq {
+	background-image: url("http://economia.nutus.info/images/caja-down.jpg");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: #DBDBDB;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-top-color: #78827B;
+	border-right-color: #78827B;
+	border-bottom-color: #78827B;
+	border-left-color: #78827B;
+	border-left-width: 1px;
+	border-left-style: solid;
+}
+.texto1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+	color: #333333;
+	text-decoration: none;
+}
+.texto4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003333;
+	text-decoration: none;
+}
+.texto2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+
+.texto2:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #006699;
+	text-decoration: none;
+}
+.borde-caja {
+	border: 1px solid #78827B;
+}
+.error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #CC3333;
+	text-decoration: none;
+}
+.texto3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FF0000;
+	text-decoration: none;
+}
+.texto-boton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #003366;
+	text-decoration: none;
+}
+.texto-boton:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+.texto5 {
+font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFCC;
+	text-decoration: none;
+}
+.lista1 {
+	background-color: #DBDBDB;
+}
+.lista2 {
+	background-color: #cccccc;
+}
+
+.padding-botonera {
+	padding-left: 10px;
+}
+
+.transparente  {
+    background-color: transparent;
+    border: 1px solid #000000;
+}
+
+.bg-login {
+	background-image: url("http://economia.nutus.info/images/login-bg.jpg");
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+
+.cuadro-abajo-blanco {
+	background-image: url(http://economia.nutus.info/images/caja-down.jpg);
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: #FAFAFC;
+}
+
+#toolTipBox { 
+       display: none; 
+       padding: 5px; 
+       font-size: 12px; 
+       border: black solid 1px; 
+       font-family: verdana; 
+       position: absolute; 
+       background-color: #FFFFCC; 
+       color: #000000; 
+} 
+
+.texto-negrita {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+.borde-simple-tabla{
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+}
+
+.disabledOption {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.titulo5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: italic;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	border: 1px none #000000;
+}
+/* gap::modificacion 05-03-2008 */
+.letters{
+	/*
+	position:relative;
+	float:left;
+	*/
+	color: #000000;
+}
+.ages{
+	margin-right:10px;
+	color: #616161;
+}
+#formGrupoFamilar{
+
+	display:none;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.autocomplete {
+    font-family: Tahoma;
+    font-size: 8pt;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    servicior: default;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.autocomplete_item {
+    padding: 1px;
+    padding-left: 5px;
+    color: black;
+    width: 100%;
+}
+
+.autocomplete_item_highlighted {
+    padding: 1px;
+    padding-left: 5px;
+    color: white;
+    background-color: #0A246A;
+}
+.form_accounting_left{
+	padding-left:220px;
+	padding-top:30px;
+	text-align:left;
+	size:40%;
+}
+.form_accounting_right{
+	padding-left:80px;
+	padding-top:30px;
+	text-align:left;
+	size:50%;
+}
+.form_accounting_right_2{
+	padding-left:80px;
+	text-align:left;
+}
+.form_accounting_td_left{}
+
+.dis_inv{
+	color:#72B46B;
+}
+
+.div_enc_list_left{
+	text-align:left;
+}
+.div_enc_list_right{
+	color:#72B46B;
+}
+.ul_form{
+	list-style:none;
+}
+.form_accounting_right_l{
+	padding-left:40px;
+	padding-top:30px;
+	text-align:left;
+	size:50%;
+}
+.form_center{
+	text-align:center;
+}
+
+
+
+checkbox{
+	border:none;
+}
+
+.ptotal{
+	background-color:#ABFEEB;
+}
+.PSformulario{
+	padding-left:20px;
+	display:none;
+}
+.PSselector{
+	margin:20px 0px 20px 0px;
+}
+.PSp{
+	margin-top:2px;
+}
+.PS3{
+	border-top:solid 1px;
+	margin-top:10px;
+	padding-top:10px;
+	text-align:right;
+}
+
+.cuadro-arriba_t {
+	background-position: left top;
+	background-color: #A9ADA7;
+	height:40px;
+}
+.td_padd_top{
+	padding-bottom:10px;
+}
+.fpagos{
+	margin-left:20px;
+}
+/* gap:: fin modificacion 05-03-2008 */
