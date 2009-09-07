@@ -5,6 +5,7 @@
 #
 #  @copyright Pablo Micolini
 #  @license BSD
+#  @version 1.1
 ######################################## 
 */
  
@@ -13,82 +14,98 @@
  class OOB_perspective {
  	
  	private $perspective;
+	public $template;
  	
  public function __construct ($perspective = false)
  {
  	global $ari;
  	
  	if (!$perspective)
-			$this->perspective= "default";
-		else {
-			if (is_dir($ari->filesdir.DIRECTORY_SEPARATOR.'perspectives'.DIRECTORY_SEPARATOR.$perspective))
+	{
+		$this->perspective= "default";
+	}
+	else 
+	{
+		if (is_dir($ari->filesdir.DIRECTORY_SEPARATOR.'perspectives'.DIRECTORY_SEPARATOR.$perspective))
+		{
 			$this->perspective= $perspective;
-			else {
-				throw new OOB_exception('', "072", "Perspectiva no existente");
-			}
 		}
+		else 
+		{
+			throw new OOB_exception('', "072", "Perspectiva no existente");
+		}
+	}
+	
+	$this->template = $ari->newTemplate ();
  
  }
  
  public function generateOutput ()
  {
  	global $ari;
-// $ari->internalChrono('p_start');
+			// $ari->internalChrono('p_start');
 			//start smarty-section template
-			$sectiontemplate= $ari->newTemplate ();
-			$sectiontemplate->caching= 0;
+			$this->template->caching= 0;
 			
 			if ($ari->get('mode') == 'admin') {  
-				$sectiontemplate->template_dir= $ari->enginedir.DIRECTORY_SEPARATOR."admin".DIRECTORY_SEPARATOR.$ari->agent->getLang();
-				$sectiontemplate->compile_id= $ari->mode."__".$ari->agent->getLang()."__";
+				$this->template->template_dir= $ari->enginedir.DIRECTORY_SEPARATOR."admin".DIRECTORY_SEPARATOR.$ari->agent->getLang();
+				$this->template->compile_id= $ari->mode."__".$ari->agent->getLang()."__";
 			} else {
-				$sectiontemplate->template_dir= $ari->filesdir.DIRECTORY_SEPARATOR.'perspectives'.DIRECTORY_SEPARATOR.$this->perspective.DIRECTORY_SEPARATOR.$ari->agent->getLang();
-				$sectiontemplate->compile_id= $ari->agent->getLang()."_".$this->perspective."__";
+				$this->template->template_dir= $ari->filesdir.DIRECTORY_SEPARATOR.'perspectives'.DIRECTORY_SEPARATOR.$this->perspective.DIRECTORY_SEPARATOR.$ari->agent->getLang();
+				$this->template->compile_id= $ari->agent->getLang()."_".$this->perspective."__";
 			}
 			
 // $ari->internalChrono('p_new');
 
 			///end smarty load
 			//check to see if section template exist
-			if (file_exists($sectiontemplate->template_dir.DIRECTORY_SEPARATOR.$ari->filename)) {
-				$sectiontemplate->assign("maincontent", $ari->get('mod_content'));
-				$sectiontemplate->assign("title", $ari->get('title'));
-				$sectiontemplate->assign("keywords", $ari->get('keywords'));
-				$sectiontemplate->assign("description", $ari->get('description'));
-				$sectiontemplate->assign("author", $ari->get('author'));
-				$sectiontemplate->assign("encoding", $ari->locale->get('encoding', 'general'));
+			if (file_exists($this->template->template_dir.DIRECTORY_SEPARATOR.$ari->filename)) {
+				$this->template->assign("maincontent", $ari->get('mod_content'));
+				$this->template->assign("title", $ari->get('title'));
+				$this->template->assign("keywords", $ari->get('keywords'));
+				$this->template->assign("description", $ari->get('description'));
+				$this->template->assign("author", $ari->get('author'));
+				$this->template->assign("encoding", $ari->locale->get('encoding', 'general'));
 // $ari->internalChrono('p_vars');				
 				if ($ari->get('mode') == 'user')
-					{$sectiontemplate->assign("webdir", $ari->webaddress );} // . $this->safeName()
+					{$this->template->assign("webdir", $ari->webaddress );} // . $this->safeName()
 			
 				if ($ari->get('mode') == 'admin')
 					{
-							$sectiontemplate->assign("webdir", $ari->adminaddress);
+							$this->template->assign("webdir", $ari->adminaddress);
 								// Modules Selector
 						/*	if ($menu = oob_module::adminModulesSelector ())
-							{	$sectiontemplate->assign("mod_names", $menu["name"]);
-								$sectiontemplate->assign("mod_values", $menu["value"]);
-								$sectiontemplate->assign("mod_selected", $menu["selected"]);
-								$sectiontemplate->assign("mod_selectedName", $menu["selectedName"]);
+							{	$this->template->assign("mod_names", $menu["name"]);
+								$this->template->assign("mod_values", $menu["value"]);
+								$this->template->assign("mod_selected", $menu["selected"]);
+								$this->template->assign("mod_selectedName", $menu["selectedName"]);
 							}
 								// Selected Module Menu
-								$sectiontemplate->assign("modulemenu", $ari->module->adminMenu());
+								$this->template->assign("modulemenu", $ari->module->adminMenu());
 						*/							
-						//		Ext-PHP no necesita esta variable seteada
-						//		$sectiontemplate->assign("modules_menu", oob_module::adminFullMenu());
-								
-							//-----------------------------------------------------------------------
-							//@todo => ver si quitar luego
-							if($ari->get("user")) 
-							{	$sectiontemplate->assign("currentUser", $ari->get("user")->name());
-							}
-							//-----------------------------------------------------------------------
-								
+								$this->template->assign("modules_menu", oob_module::adminFullMenu());
+								$this->template->assign("mod_selected", $ari->module->name());
+							
+					}			
+					//-----------------------------------------------------------------------
+					//@todo => ver si quitar luego
+					if($ari->get("user")) 
+					{	
+						$this->template->assign("currentUser", $ari->get("user")->name());
+						$this->template->assign("logued", true);
 					}
+					else
+					{
+						$this->template->assign("logued", false);
+					}
+
+					//-----------------------------------------------------------------------
+								
+					
 // $ari->internalChrono('p_morevars');
 
 
-				$sectiontemplate->display($ari->filename);
+				$this->template->display($ari->filename);
 
 
 

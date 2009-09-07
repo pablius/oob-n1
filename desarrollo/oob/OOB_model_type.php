@@ -5,7 +5,7 @@
 #
 #  @copyright Pablo Micolini
 #  @license GPL v3
-#  @version 1.9.9 - (RC6)
+#  @version 1.9.10 - (RC6)
 #  Notice: BUGS: There are some cases where filters are not taking into account the operator. 
 #  Missing Features for V2: Remote Sort.
 ######################################## 
@@ -1437,7 +1437,7 @@ abstract class OOB_model_type extends OOB_model
 		
 			$savem= $ari->db->SetFetchMode(ADODB_FETCH_ASSOC);
 			// #debug  
-			// file_put_contents('oob.sql.txt',$sql_final."\n\r",FILE_APPEND);
+			file_put_contents('oob.sql.txt',$sql_final."\n\r",FILE_APPEND);
 			$rs = $ari->db->SelectLimit($sql_final, $numrows, $offset); 
 			$ari->db->SetFetchMode($savem);
 			
@@ -1633,21 +1633,41 @@ abstract class OOB_model_type extends OOB_model
 			{
 				// tengo que buscar en la remoteclass, la propiedad en la que se almacena el id de mi objeto
 				$acquired_attribute = false;
+				$relation_class_available = false;
 				foreach(static::$public_properties as $property => $constraint)
 				{
 					if ($constraint == 'object-' . $remote_class)
 					{
 						$acquired_attribute = $property;
 					}
+					
+					if ($constraint == 'object-relation')
+					{
+						$relation_class_available =	 $property;
+					}
+					
 				}
 				
-				if (!$acquired_attribute)
+				if (!$acquired_attribute && !$relation_class_available)
 				{			
+					// puede ser que sea del tipo relation
 					throw new OOB_exception("Trying to filter non existant relation:" . $field .' from: ' . static::getClass(). ' remote class:'. $remote_class , "835", "Can't filter relation", true);
 				}
-				
-				$join_name = $table .'_' . $acquired_attribute;
-				$sql_join[] = 'LEFT JOIN ' . $table . ' as '. $join_name  .' ON (' . $remote_table. '.id = ' .  $join_name . '.' . $acquired_attribute . ')'; 
+				elseif (!$acquired_attribute && $relation_class_available !== false)
+				{
+					$campo_id = $relation_class_available;
+					$campo_clase = 'class_' . substr($relation_class_available,3,strlen($relation_class_available));
+							
+					// hacemos un LJ con la tabla remota, pero especificamos nuestro tipo de objeto en el campo del tipo-relacion remoto
+					$join_name = $table. '_'.$campo_id;
+					$sql_join[] = 'LEFT JOIN ' . $table . ' as '.$join_name.' ON (' . $join_name. '.'.$campo_id.' = ' .  $remote_table . '.id AND ' .  $join_name. '.' . $campo_clase . ' = ' .$ari->db->qMagic($remote_class) . ')';
+					
+				}
+				else
+				{
+					$join_name = $table .'_' . $acquired_attribute;
+					$sql_join[] = 'LEFT JOIN ' . $table . ' as '. $join_name  .' ON (' . $remote_table. '.id = ' .  $join_name . '.' . $acquired_attribute . ')'; 
+				}
 			}
 			else
 			{
