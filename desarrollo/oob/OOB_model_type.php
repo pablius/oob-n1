@@ -5,7 +5,7 @@
 #
 #  @copyright Pablo Micolini
 #  @license GPL v3
-#  @version 1.9.10 - (RC6)
+#  @version 1.9.12 - (RC6)
 #  Notice: BUGS: There are some cases where filters are not taking into account the operator. 
 #  Missing Features for V2: Remote Sort.
 ######################################## 
@@ -249,13 +249,11 @@ abstract class OOB_model_type extends OOB_model
 			$this->status = $rs->fields['status'];
 			
 			$rs->Close();		
-		}
-		else
-		{	
-			return false;
+			return true; 		
 		}
 		
-		return true; 		
+		return false;
+		
  	}
 	
 	/* factory method for colections */
@@ -454,10 +452,15 @@ abstract class OOB_model_type extends OOB_model
 						
 						$update_sql_array[] = "`" . $property_key . "` = " . $ari->db->qMagic($this->$property_key->getDate());
 					}
+					elseif (stristr(strtolower($property_key),'id_') && $this->$property_key == '')
+					{
+						$update_sql_array[] = "`" . $property_key . "` = " . $ari->db->qMagic(0);
+					}
 					else
 					{
-							
+						
 						$update_sql_array[] = "`" . $property_key . "` = " . $ari->db->qMagic($this->$property_key);
+						
 					}
 				}
 			}
@@ -493,6 +496,10 @@ abstract class OOB_model_type extends OOB_model
 					if (stristr(strtolower($property_constraints),'object-Date'))
 					{
 						$values_array[] = $ari->db->qMagic($this->$property_key->getDate());
+					}
+					elseif (stristr(strtolower($property_key),'id_') && $this->$property_key == '')
+					{
+						$values_array[] = $ari->db->qMagic(0); // an unexistant ID. This allows for negative ids to be used as special cases
 					}
 					else
 					{
@@ -1174,7 +1181,7 @@ abstract class OOB_model_type extends OOB_model
 		}
 		
 		//sort SQL string
-		$sortby = self::__generateSortSQL($sort, $sort_mode, $table);
+		$sortby = static::__generateSortSQL($sort, $sort_mode, $table);
 			
 		$sql_array = $sql_union = array();
 		$u = 0;
@@ -1437,7 +1444,7 @@ abstract class OOB_model_type extends OOB_model
 		
 			$savem= $ari->db->SetFetchMode(ADODB_FETCH_ASSOC);
 			// #debug  
-			file_put_contents('oob.sql.txt',$sql_final."\n\r",FILE_APPEND);
+			//file_put_contents('oob.sql.txt',$sql_final."\n\r",FILE_APPEND);
 			$rs = $ari->db->SelectLimit($sql_final, $numrows, $offset); 
 			$ari->db->SetFetchMode($savem);
 			

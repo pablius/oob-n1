@@ -1,11 +1,11 @@
 <?
 /**
 ########################################
-#OOB/N1 Framework [©2004,2006]
+#OOB/N1 Framework [©2004-2009]
 #
 #  @copyright Pablo Micolini
 #  @license BSD
-#  @version 1.1
+#  @version 1.2
 ######################################## 
 */
 
@@ -197,8 +197,16 @@ abstract class OOB_internalerror
 			} // end switch
 			
 
-			// escapamos el string (y escapamos el signo de $ porque representa las variables en php)
-			$valor_variable = '"'. str_replace('$','\$',$valor_variable) . '"';
+			// escapamos el string
+				if (is_array($valor_variable) || is_object($valor_variable))
+				{
+					$valor_variable = '"'. ($valor_variable) . '"';
+				}
+				else
+				{
+					$valor_variable = '"'. str_replace('$','\$',addslashes($valor_variable)) . '"';
+				}
+			
 			
 			//
 			array_unshift($constraints_vars,$valor_variable);

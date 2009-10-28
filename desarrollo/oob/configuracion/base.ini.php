@@ -1,8 +1,8 @@
 [main]
-title = "OOB-n1"
+title = "Industria Libre (dev)"
 main_lang = "es-ar"
 accepted_lang = "es-ar"
-name = "OOB-n1"
+name = "Industria Libre"
 
 allow-cache = "true"
 debug = "false"
@@ -15,14 +15,14 @@ smtpuser = "info@nutus.com.ar"
 smtppass = ""
 
 [database]
-uri = "mysqli://talkmee:talkmee@localhost/talkmee"
+uri = "mysqli://ilibre:ilibre@localhost/ilibre"
 
 
 [location]
-filesdir = "C:/data/nutus/desarrollo/clientes/talkmee"
-webaddress = "http://talkmee.nutus.info"
-adminaddress = "http://admin.talkmee.nutus.info"
-cachedir = "C:/data/nutus/desarrollo/clientes/talkmee/archivos/cache"
+filesdir = "C:/data/nutus/desarrollo/clientes/ilibre"
+webaddress = "http://ilibre.nutus.info"
+adminaddress = "http://admin.ilibre.nutus.info"
+cachedir = "C:/data/nutus/desarrollo/clientes/ilibre/archivos/cache"
 
 [metadata]
 description = ""

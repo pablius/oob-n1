@@ -33,7 +33,7 @@ class OOB_user extends OOB_internalerror {
 	
 	public function name()
 	{
-		return $this->get('uname');
+		return $this->uname;
 	}
 	
 	/** loads config details, and starts the user. 
@@ -474,6 +474,39 @@ class OOB_user extends OOB_internalerror {
 			
 
 	}
+	
+	
+	public function exist_user($user)
+	{
+	
+		global $ari;
+	
+		if ($user != null)
+		{	$uname = $ari->db->qMagic($user);
+			$clausulaUser = "uname = $uname";
+		}
+		else
+		{	$clausulaUser = "";
+		}	
+		 
+		
+		$sql= "SELECT id FROM oob_user_user WHERE  $clausulaUser " ;
+			
+		$savem= $ari->db->SetFetchMode(ADODB_FETCH_NUM);
+		$rs = $ari->db->Execute($sql);
+		$ari->db->SetFetchMode($savem);
+
+		if (!$rs->EOF && $rs->fields[0]!= 0) 
+		{
+			$rs->Close();
+			return true;
+		} 
+		else
+		{
+			return false;
+		}
+		
+	}//end function 
 
 	 /** Valida que no haya otro usuario con el mismo nombre de usuario o email 
 	  *  Devuelve TRUE si NO existe el user. De existir devuelve false
@@ -487,8 +520,8 @@ class OOB_user extends OOB_internalerror {
 		if (!OOB_validatetext :: isClean($this->uname) || 
 			!OOB_validatetext :: isCorrectLength ($this->uname, 4, 64) ||
 			!OOB_validatetext :: isEmail($this->email) )
-		{
-			return false;
+		{		
+			return false;			
 		} 
 		
 		if ($this->user <> ID_UNDEFINED)
@@ -511,8 +544,8 @@ class OOB_user extends OOB_internalerror {
 				WHERE ( uname = $uname OR email = $email )
 				$clausula
 			   "; 
-			
 		
+				
 			$rs = $ari->db->Execute($sql);
 			$ari->db->SetFetchMode($savem);
 			
@@ -522,9 +555,11 @@ class OOB_user extends OOB_internalerror {
 					if(  $rs->fields[1] == 9 ){												
 						$this->user = $rs->fields[2];
 						$this->status = 1 ;
-						return true;
-					}else{
 						return false;
+					}
+					else
+					{
+						return true;
 					}	
 			} 
 			else
@@ -534,7 +569,50 @@ class OOB_user extends OOB_internalerror {
 		
 
 	}//end function
+	
+	
+	//devuelve un numero aleatorio de n caracteres
+	public function randon( $longitud ){
+		
+		$exp_reg = "[^0-9]";    
+		
+		return substr(eregi_replace($exp_reg, "", md5(rand())) .
+       eregi_replace($exp_reg, "", md5(rand())) .
+       eregi_replace($exp_reg, "", md5(rand())),
+       0, $longitud);
+		
+	}//end function
 
+	/* genera un usuario con formato cuit, ademas verifica que no exista */
+	public function get_rand_user()
+	{
+	
+		while(true)
+		{
+			$str = $this->randon(2) . '-' . $this->randon(8) . '-' . $this->randon(1) ;	
+			if( !$this->exist_user($str) )
+			{
+				break;
+			}
+		}
+        
+		
+		return $str;
+	
+	}//end function
+	
+	//devuelve el contacto que esta asiganado al usuario
+	public function get_contact(){
+	
+		$result = false;
+	
+		if( $contacto = contactos_contacto::getRelated($this) ){
+			$result = $contacto[0];
+		}
+	
+		return $result;
+		
+	}//end function
 	
 	/** Returs the value for the given var */ 	
  	public function get ($var)
@@ -557,20 +635,21 @@ class OOB_user extends OOB_internalerror {
 			
 		
 		if (!OOB_validatetext :: isEmail($this->email))
-		{   $this->error()->addError ("INVALID_EMAIL");		
+		{   $this->error()->addError ("INVALID_EMAIL");					
 		}
 		
 		if (!OOB_validatetext :: isClean($this->uname) || !OOB_validatetext :: isCorrectLength ($this->uname, 4, 64))
 		{	$this->error()->addError ("INVALID_USER");			
 		} 
-		
+			
+
 		 	//validar que el nombre de usuario y password no se repitan para otro usuario
 			if (OOB_validatetext :: isClean($this->uname) && 
 				OOB_validatetext :: isCorrectLength ($this->uname, 4, 64) &&
 				OOB_validatetext :: isEmail($this->email) )
 			{
 				if (!$this->isUnique())
-				{$this->error()->addError ("INVALID_USER");							
+				{$this->error()->addError ("INVALID_USER");					
 				}
 			} 
 			 
