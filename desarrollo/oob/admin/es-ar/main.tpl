@@ -18,7 +18,10 @@
 
 <div id="loading-mask" style=""></div>
 <div id="loading">
-    <div class="loading-indicator"><img src="/images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>Emporika 1.0 - <a href="http://www.nutus.com.ar">Nutus</a><br /><span id="loading-msg">Loading styles and images...</span></div>
+    <div class="loading-indicator">
+		<img src="/images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>{$title}
+		<br/>
+		<a href="http://www.nutus.com.ar">Nutus</a><br /><span id="loading-msg">Cargando estilos...</span></div>
 </div>
 
 
@@ -27,7 +30,7 @@
 <script type="text/javascript" src="{$webdir}/scripts/ext/resources/ext-2.0.2/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="{$webdir}/scripts/ext/resources/ext-2.0.2/ext-all-debug.js"></script>
 
-<script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading Core API...';</script>
+<script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Cargando motor del sistema...';</script>
 
 
 <script type="text/javascript" src="{$webdir}/scripts/ext/resources/extjs-ux/menu/EditableItem.js"></script>
@@ -66,14 +69,14 @@
 <script type="text/javascript" src="{$webdir}/scripts/ext/resources/extjs-ux/form/logindialog/Ext.ux.form.IconCombo.js"></script>
 
 
-<script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Loading UI Components...';</script>
+<script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Cargando componentes de usuario...';</script>
 
 
 <link rel="stylesheet" type="text/css" href="{$webdir}/scripts/ext/resources/extjs-ux/form/css/filetree.css"> 
 <link rel="stylesheet" type="text/css" href="{$webdir}/scripts/ext/resources/extjs-ux/form/css/icons.css"> 
 
 
-<script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Initializing...';</script>
+<script type="text/javascript">document.getElementById('loading-msg').innerHTML = 'Carga completa. Iniciando...';</script>
 
 <!--CARGO EL SCRIPT GENERADO POR PHP-EXT-->
 <script type="text/javascript" src="{$webdir}/admin/script"></script>

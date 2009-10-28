@@ -5,7 +5,7 @@
 #
 #  @copyright Pablo Micolini
 #  @license GPL v3
-#  @version 1.9.12 - (RC6)
+#  @version 1.9.13 - (RC6)
 #  Notice: BUGS: There are some cases where filters are not taking into account the operator. 
 #  Missing Features for V2: Remote Sort.
 ######################################## 
@@ -1931,6 +1931,61 @@ abstract class OOB_model_type extends OOB_model
 					'join' => $sql_join
 					);
 		
+	}
+	
+	public function max($attribute)
+	{
+		return static::__sql_operation($attribute, 'MAX');
+	}
+
+	public function min($attribute)
+	{
+		return static::__sql_operation($attribute, 'MIN');
+	}
+
+	public function avg($attribute)
+	{
+		return static::__sql_operation($attribute, 'AVG');
+	}
+
+	protected function __sql_operation($attribute, $operation)
+	{
+		global $ari;
+		
+		$operations = array ('AVG','MIN','MAX','VAR_POP','VAR_SAMP','STDDEV_POP','STDDEV_SAMP');
+		
+		if (!in_array($operation,$operations))
+		{
+			throw new OOB_exception("SQL Operation not allowed", "899", "Operation {$operation} not allowed", true);
+		}
+		
+		if (!isset(static::$public_properties[$attribute]))
+		{
+			throw new OOB_exception("Field {$attribute} non existant in object", "899", "Field {$attribute} non existant in object", true);
+		}
+		
+		$table = static::getTable();
+		
+		$return = false;
+			
+		// get from DB
+		$sql = "SELECT $operation($attribute) as count 
+				FROM $table ";
+			
+		
+		$savem = $ari->db->SetFetchMode(ADODB_FETCH_NUM);
+		
+		$rs = $ari->db->Execute($sql); 
+				
+		$ari->db->SetFetchMode($savem);
+				
+		if ($rs && !$rs->EOF) 
+		{ 
+			$return = $rs->fields[0];
+			$rs->Close();
+		} 
+
+		return $return;	
 	}
 	
 }

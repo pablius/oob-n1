@@ -18,7 +18,7 @@ PhpExt_Javascript::sendContentType();
 
 
 $msg_config = PhpExt_MessageBoxOptions::createMsgOptions()
-			  ->setTitle("Emporika")
+			  ->setTitle($ari->title)
 			  ->setMsg("¿Est&aacute; seguro que desea salir?")
 			  ->setWidth(300)
 			  ->setButtons( new PhpExt_JavascriptStm("{ cancel:'Cancelar', yes:'Salir', ok:'Salir y Guardar' }") )
@@ -39,7 +39,7 @@ $msgbox = PhpExt_Javascript::functionDef(null,
 
 	
 
-//Boton_Mi_Cuenta OnClick
+//Boton_Mi_Cuenta OnClick // function addTab( Title, Url, Add, Params, cache, tab_id ) // addTab(i.title,i.url,true,i.params,true,i.id);
 $function_add_tab = PhpExt_Javascript::callfunction( "addTab",												   
 											array( "'Mi Cuenta'",
 												   "'/seguridad/user/update'",
@@ -293,7 +293,7 @@ Ext.Ajax.on('requestexception',function(request,response,f,g,h){
 		 
 	break;
 	case 9001:
-		Ext.MessageBox.alert('Emporika',response.getResponseHeader['message']); 
+		Ext.MessageBox.alert('".$ari->title."',response.getResponseHeader['message']); 
 		Ext.getCmp('status_bar').clearStatus({useDefaults:true});
 	break;	
 	}

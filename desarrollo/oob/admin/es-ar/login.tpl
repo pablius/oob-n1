@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Administraci&oacute;n de { $title }</title>
+<title>{$title}</title>
 <meta http-equiv="Content-Type" content="text/html; charset={$encoding}" />
 <link href="{$webdir}/oob/admin/estilo.css" rel="stylesheet" type="text/css">
 
