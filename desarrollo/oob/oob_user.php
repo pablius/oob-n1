@@ -3,7 +3,7 @@
 /**
  @license: BSD
  @author: Pablo Micolini (pablo.micolini@nutus.com.ar)
- @version: 1.1
+ @version: 1.2
 
  Provides user validation (login/logout)
 */
@@ -540,12 +540,14 @@ class OOB_user extends OOB_internalerror {
 		$email = $ari->db->qMagic($this->email);
 		
 		$sql = "SELECT true as cuenta,status,id
+
 				FROM oob_user_user 
 				WHERE ( uname = $uname OR email = $email )
 				$clausula
 			   "; 
 		
 				
+
 			$rs = $ari->db->Execute($sql);
 			$ari->db->SetFetchMode($savem);
 			
@@ -555,6 +557,8 @@ class OOB_user extends OOB_internalerror {
 					if(  $rs->fields[1] == 9 ){												
 						$this->user = $rs->fields[2];
 						$this->status = 1 ;
+
+
 						return false;
 					}
 					else
@@ -594,6 +598,7 @@ class OOB_user extends OOB_internalerror {
 			{
 				break;
 			}
+
 		}
         
 		
@@ -890,6 +895,7 @@ class OOB_user extends OOB_internalerror {
 		$savem = $ari->db->SetFetchMode(ADODB_FETCH_NUM);
 		$sql = "SELECT id FROM oob_user_user WHERE 1=1 $estado $searchText $sortby ";
 		
+
 		$rs = $ari->db->SelectLimit($sql, $limit, $pos);
 
 		$ari->db->SetFetchMode($savem);

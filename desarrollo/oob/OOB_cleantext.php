@@ -5,6 +5,7 @@
 #
 #  @copyright Pablo Micolini
 #  @license BSD
+#  @version 1.1
 ######################################## 
 */
 
@@ -107,6 +108,9 @@ public function removeAttributes($str)
        return $str;
 }
 
+public function cleanString($str) {
+    return ereg_replace("[^[:alnum:]+]","",$str);
+}
 
 }
 ?>

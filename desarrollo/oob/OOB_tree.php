@@ -1,11 +1,11 @@
 <?php
 /**
 ########################################
-#OOB/N1 Framework [©2004,2006]
+#OOB/N1 Framework [©2004,2009]
 #
 #  @copyright Pablo Micolini
 #  @license BSD
-#  @version 3
+#  @version 5
 ######################################## 
 */
  
@@ -169,7 +169,7 @@
 			{
 		//		if (!$classes || in_array($rs->fields[1],$classes))
 		//		{
-				$result[] = & new OOB_tree_node	($rs->fields[0], $rs->fields[1], $rs->fields[2], $rs->fields[3], $rs->fields[4], $this->id, $this->name(), $init);
+				$result[] =  new OOB_tree_node	($rs->fields[0], $rs->fields[1], $rs->fields[2], $rs->fields[3], $rs->fields[4], $this->id, $this->name(), $init);
 		//		}
 			$rs->MoveNext(); 	
 			}
@@ -622,7 +622,8 @@ else
 		//bandera q permite o no la carga de hijos del nodo cargado
 		$flagCargaHijos = false;
 	
-		
+
+			
 		if ($nodes = $this->getTree($root,$classes, $init))
 		{
 		
@@ -642,103 +643,72 @@ else
 					$cuenta = count($niveles);
 					
 					// no entiendo que hace esto, pero anda de diez	
-					if ($cuenta>0)
+					if ($cuenta > 0)
 					{ 
-						
-						
 						while ($niveles[$cuenta-1]<$n->right()) 
-							{ 
+						{ 
 							array_pop($niveles);
 							$cuenta = count($niveles);
-		               		if ($cuenta == 0)
-			               		{
-		               			//si termino cualquier rama desabilito la carga de hijos 
-			               			$flagCargaHijos = false;
-			               			break;
-			               		}
+							if ($cuenta == 0)
+							{
+								//si termino cualquier rama desabilito la carga de hijos 
+								$flagCargaHijos = false;
+								break;
 							}
+						}
 					}
 				
 					
 					// si hay limitación de nivel, la validamos
-					if ($levels > $cuenta  )
-						{ 
-							
-								// lo ponemos en el arbol
-								$return['tree'][$i]['nivel'] = "";
-								$return['tree'][$i]['node'] = $n;
-								
-								// marcamos al elegido	 (selected)					
-								if ($selected == $n->id() )
-								{	$return['tree'][$i]['selected'] = "selected"; 	}
+					if ($levels > $cuenta || $levels == 0 ) /* si alguien entiende xq esto andaba antes se gana un premio */
+					{ 
 						
-							
-							
-							//guardo el nivel del nodo cargado en la pagina y activo la carga de sus hijos
-							//ya q llegue al nodo cargado en el recorrido
-							if ($n->left() == $node->left())
-							{
-								$my_nivel = $cuenta;
-								$flagCargaHijos = true;
-							
-							}
-												
-							//busco los padres del nodo cargado los cuales deben tener una izquierda mayor q
-							//el nodo cargado y una derecha mayor q la derecha del nodo cargado		
-							if ($n->left() < $node->left() && $n->right() > $node->right())
-							{	
+						// lo ponemos en el arbol
+						$return['tree'][$i]['nivel'] = "";
+						$return['tree'][$i]['node'] = $n;
+						
+						// marcamos al elegido	 (selected)					
+						if ($selected == $n->id() )
+						{	$return['tree'][$i]['selected'] = "selected"; 	}
+					
+						
+						
+						//guardo el nivel del nodo cargado en la pagina y activo la carga de sus hijos
+						//ya q llegue al nodo cargado en el recorrido
+						if ($n->left() == $node->left())
+						{
+							$my_nivel = $cuenta;
+							$flagCargaHijos = true;
+						
+						}
+											
+						//busco los padres del nodo cargado los cuales deben tener una izquierda mayor q
+						//el nodo cargado y una derecha mayor q la derecha del nodo cargado		
+						if ($n->left() < $node->left() && $n->right() > $node->right())
+						{	
+								
+							$return['parents'][] = $return['tree'][$i]; 
+						} 
+						else // un hijo no puede ser padre
+						{
+							if (($cuenta == 0  && $n->id() != $node->id() && $root !== TREE_ROOT) 
+							||  ($my_nivel + 1 == $cuenta && $flagCargaHijos && $node->right() > $n->right()  && $root === TREE_ROOT ))
+								{
 									
-								$return['parents'][] =&$return['tree'][$i]; 
-							} 
-							else // un hijo no puede ser padre
-							{
-								if (($cuenta == 0  && $n->id() != $node->id() && $root !== TREE_ROOT) 
-								||  ($my_nivel + 1 == $cuenta && $flagCargaHijos && $node->right() > $n->right()  && $root === TREE_ROOT ))
-									{
-										
-											$return['childs'][] = & $return['tree'][$i]; 
-									}
-							}
-		
+										$return['childs'][] = $return['tree'][$i]; 
+								}
+						}
+	
+						$return['tree'][$i]['nivel'] .= str_repeat('--',$cuenta); 
+						$niveles[] = $n->right(); //['right']; 
 							
-							
-						
-							//si el nivel del nodo actual recorrido es un nivel mayor q 
-							//my_nivel (nivel del nodo cargado) y la carga de hijos esta permitida es decir
-							//flagCargaHijos esta activa y la derecha del nodo actual recorrido es menor q la 
-							//derecha del nodo cargado (es decir es pariente) 
-						
-					//	if ($root != TREE_ROOT || $node == TREE_ROOT)
-					//		print "my_nivel: " . $my_nivel . ", niveles: " . count($niveles) . ", flaghijos: " . $flagCargaHijos. ", node-r: " . $node->right() . ", node-id: " . $node->name() .", n-r: " .$n->right() .", n-id: " .$n->id() .", n-name: " .$n->name(). "<BR>"; 
-							
-//						if ($my_nivel + 1 == count($niveles) && $flagCargaHijos && $node->right() > $n->right() 
-//							  || ($node == TREE_ROOT && count($niveles) == 0) )
-					
-					
-						
-						// pone los childs en su array
-//						if (
-//							(count($niveles) == 0 )
-//							(count($niveles) == 0 ) //&& $root !== TREE_ROOT )   // cuando todos los parametros son un nodo, o todos son tree_root
-//						    || ($my_nivel + 1 == count($niveles) && $flagCargaHijos && $node->right() > $n->right()  && $root === TREE_ROOT )  // cuando empieza en tree_root, pero nace en un nodo
-//						  //  || (count($niveles) == 0 && $node !== TREE_ROOT )   // no hace falta jaja
-//						    
-//						    ) 
-//							{
-//								$return['childs'][] = $return['tree'][$i]; 
-//							}
-							
-					
-							
-				       		$return['tree'][$i]['nivel'] .= str_repeat('--',$cuenta); 
-				       		$niveles[] = $n->right(); //['right']; 
-								
 						++$i;
-						}// end if nivel
+					}// end if nivel
 				}//end if enabled
 			}//end foreach
 		}// end if
 		 $ari->internalChrono('getTreeAdvanced_end');
+	
 		return $return ;	
  	}//end function
  	
@@ -788,7 +758,7 @@ else
 			{ 
 				//	print "nodo: " . $rs->fields[0] . ",obj-id: " .$rs->fields[2]."<br>";
 				
-				$result[] = & new OOB_tree_node	($rs->fields[0], $rs->fields[1], $rs->fields[2], $rs->fields[3], $rs->fields[4], $this->id, $init);
+				$result[] = new OOB_tree_node	($rs->fields[0], $rs->fields[1], $rs->fields[2], $rs->fields[3], $rs->fields[4], $this->id, $init);
 			$rs->MoveNext(); 	
 			}
 		}
@@ -920,7 +890,7 @@ public function moveUp ($src, $dst)
 public function moveAsFirstChild ($src, $dst)
 {
 	//if ($dst === TREE_ROOT) {return false;}
-	
+
 	if ($dst === TREE_ROOT) 
 		{ $dst = new OOB_tree_node (0, '', 0, 0, 0,$this->id(),$this->name(), false) ;}
 	
