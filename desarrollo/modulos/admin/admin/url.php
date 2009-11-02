@@ -88,6 +88,9 @@ case "config":
 					include ($ari->module->admindir() . DIRECTORY_SEPARATOR  . "config_cache.php");
 					break;}	
 					
+					case "cache_process": {
+					include ($ari->module->admindir() . DIRECTORY_SEPARATOR  . "config_cache_process.php");
+					break;}	
 					
 					default:
 					{

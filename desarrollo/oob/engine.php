@@ -589,6 +589,9 @@ $this->internalChrono('end_generate');
  		ob_clean();
  		ob_start();
 		
+		// dejamos un registro
+		$this->user->error()->addError('Borrar cache para: ' . $all,true);
+		
  		switch ($all)
  		{
 	 		case "menu":
@@ -623,11 +626,12 @@ $this->internalChrono('end_generate');
 				  {
 				   while (false !== ($file = readdir($handle))) 
 				   { 
+								
 						if ($file != "." && $file != ".." && $file != ".svn")  /// correccion para que no salga el dir de SUBVERSION
 						{ 
 							if (is_file ($this->cachedir . DIRECTORY_SEPARATOR. $file))
 								{
-								unlink ($this->cachedir . DIRECTORY_SEPARATOR. $file);
+									unlink ($this->cachedir . DIRECTORY_SEPARATOR. $file);
 								}
 					   } 
 				   } // end while

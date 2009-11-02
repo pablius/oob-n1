@@ -3,7 +3,7 @@
 /**
  @license: BSD
  @author: Pablo Micolini (pablo.micolini@nutus.com.ar)
- @version: 1.2
+ @version: 1.3
 
  Provides user validation (login/logout)
 */
@@ -551,24 +551,22 @@ class OOB_user extends OOB_internalerror {
 			$rs = $ari->db->Execute($sql);
 			$ari->db->SetFetchMode($savem);
 			
-			if( !$rs->EOF && $rs->fields[0]!= 0 )
+			if ($rs && !$rs->EOF)
 			{			
 					//duplicado
-					if(  $rs->fields[1] == 9 ){												
+					if(  $rs->fields[1] == 9 )
+					{												
 						$this->user = $rs->fields[2];
-						$this->status = 1 ;
-
-
-						return false;
+						return true;
 					}
 					else
 					{
-						return true;
+						return false;
 					}	
 			} 
 			else
 			{
-					return true;	
+					return true;
 			}//end if
 		
 
@@ -632,7 +630,6 @@ class OOB_user extends OOB_internalerror {
  	} 	
 
 	/** Stores/Updates user object in the DB */	
-	/** Stores/Updates user object in the DB */	
 	public function store() {
 		global $ari;
 		// clean vars !
@@ -640,51 +637,52 @@ class OOB_user extends OOB_internalerror {
 			
 		
 		if (!OOB_validatetext :: isEmail($this->email))
-		{   $this->error()->addError ("INVALID_EMAIL");					
+		{   
+			$this->error()->addError ("INVALID_EMAIL");					
 		}
 		
 		if (!OOB_validatetext :: isClean($this->uname) || !OOB_validatetext :: isCorrectLength ($this->uname, 4, 64))
-		{	$this->error()->addError ("INVALID_USER");			
+		{	
+			$this->error()->addError ("INVALID_USER");			
 		} 
-			
-
-		 	//validar que el nombre de usuario y password no se repitan para otro usuario
-			if (OOB_validatetext :: isClean($this->uname) && 
-				OOB_validatetext :: isCorrectLength ($this->uname, 4, 64) &&
-				OOB_validatetext :: isEmail($this->email) )
-			{
-				if (!$this->isUnique())
-				{$this->error()->addError ("INVALID_USER");					
-				}
-			} 
-			 
-			
-			  if ($this->password != -1)
-			  {
-				  if (!OOB_validatetext :: isClean($this->password) ||!OOB_validatetext :: isPassword($this->password) ){
-				 $this->error()->addError ( "INVALID_PASS"); 
-				 }
-			  }
-			   
-			  if ( 	!OOB_validatetext :: isNumeric($this->status) ){
-			  	$this->error()->addError ("INVALID_STATUS", true);
-			  }
-				
-			//empleado
-			if (is_a ($this->employee, "personnel_employee") )
-			{	$employee_id = $ari->db->qMagic($this->employee->get('id'));	
-			}
-			else
-			{	$employee_id = $ari->db->qMagic(0);
-			}
-			
-			$errorlist= $this->error()->getErrors();
 		
-			if (count ($errorlist) > 0)
-			 { return false; //devuelve un objeto de error con los errores!
-			 }
-			 else
+		//validar que el nombre de usuario y password no se repitan para otro usuario
+		if (!$this->isUnique())
+		{
+			$this->error()->addError ("INVALID_USER");					
+		}		
+
+		if ($this->password != -1)
+		{
+			if (!OOB_validatetext :: isClean($this->password) ||!OOB_validatetext :: isPassword($this->password) )
 			{
+				$this->error()->addError ( "INVALID_PASS"); 
+			}
+		}
+			   
+		if (!OOB_validatetext :: isNumeric($this->status) )
+		{
+			$this->error()->addError ("INVALID_STATUS");
+		}
+				
+		//empleado
+		if (is_a ($this->employee, "personnel_employee") )
+		{	
+			$employee_id = $ari->db->qMagic($this->employee->get('id'));	
+		}
+		else
+		{	
+			$employee_id = $ari->db->qMagic(0);
+		}
+			
+		$errorlist= $this->error()->getErrors();
+		
+		if (count ($errorlist) > 0)
+		{ 
+			return false; //devuelve un objeto de error con los errores!
+		}
+		else
+		{
 			 	
 			 	$uname =$ari->db->qMagic($this->uname);
 			 	$email =$ari->db->qMagic($this->email);
@@ -714,14 +712,15 @@ class OOB_user extends OOB_internalerror {
 					$ari->db->Execute($sql);
 					
 					if (!$ari->db->CompleteTrans())
-						throw new OOB_exception("Error en DB: {$ari->db->ErrorMsg()}", "010", "Error en la Base de Datos", false); //return false;
+						throw new OOB_exception("Error en DB: {$ari->db->ErrorMsg()}", "010", "Error en la Base de Datos", true); //return false;
 					else
 					{
 						$this->password = -1;
 						return true;
 					}
 					
-				} else 
+				} 
+				else 
 				{
 					// insert new and set userid with new id
 					$password =$ari->db->qMagic($password);
@@ -735,7 +734,7 @@ class OOB_user extends OOB_internalerror {
 					$this->user = $ari->db->Insert_ID();
 				
 					if (!$ari->db->CompleteTrans())
-						throw new OOB_exception("Error en DB: {$ari->db->ErrorMsg()}", "010", "Error en la Base de Datos", false); //return false;
+						throw new OOB_exception("Error en DB: {$ari->db->ErrorMsg()}", "010", "Error en la Base de Datos", true); //return false;
 					else
 					{
 						$this->password = -1;
